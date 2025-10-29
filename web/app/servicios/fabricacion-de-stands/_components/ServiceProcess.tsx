@@ -9,7 +9,7 @@ export const ServiceProcess = () => {
   const { categorias } = (config as unknown as ConfigResponse).data;
 
   // useEffect(() => {
-  const serviceData = categorias[0].trabajos.map((trabajo) => ({
+  const serviceData = categorias[0]?.trabajos.map((trabajo) => ({
     ...trabajo,
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${trabajo.imagen}`,
   }));

@@ -7,9 +7,9 @@ export const AdditionalService = () => {
   const config = useConfig();
   const { categorias } = (config as unknown as ConfigResponse).data;
 
-  const serviceData = categorias[0] && {
-    ...categorias[0],
-    serviciosAdicionales: categorias[0]?.serviciosAdicionales.map((s) => ({
+  const serviceData = categorias[1] && {
+    ...categorias[1],
+    serviciosAdicionales: categorias[1]?.serviciosAdicionales.map((s) => ({
       ...s,
       imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_adicional/${s.imagen}`,
     })),
@@ -69,6 +69,13 @@ export const AdditionalService = () => {
                   <h3 className="text-xl font-bold text-white leading-tight group-hover:translate-y-[-4px] transition-transform duration-500">
                     {servicio.titulo}
                   </h3>
+                  <h2
+                    className="text-base font-bold text-white leading-tight opacity-0 translate-y-2 
+  transition-all duration-500 ease-out 
+  group-hover:opacity-100 group-hover:translate-y-0"
+                  >
+                    {servicio.subtitulo}
+                  </h2>
                 </div>
               </div>
 

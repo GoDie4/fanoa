@@ -306,7 +306,7 @@ export default function StandShowcaseSlider() {
                   animate="center"
                   exit="exit"
                 >
-                  {/* <Link
+                  <Link
                     href={standsData[currentIndex]?.enlace}
                     className="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white text-lg rounded-full transition-all duration-300 group"
                   >
@@ -326,7 +326,7 @@ export default function StandShowcaseSlider() {
                         d="M17 8l4 4m0 0l-4 4m4-4H3"
                       />
                     </motion.svg>
-                  </Link> */}
+                  </Link>
                 </motion.div>
               </div>
             </div>

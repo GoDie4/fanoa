@@ -14,6 +14,7 @@ export interface Banner {
 export interface ServicioAdicional {
   id: string;
   titulo: string;
+  subtitulo: string;
   imagen: string;
   categoriaId: string;
   createdAt: string;

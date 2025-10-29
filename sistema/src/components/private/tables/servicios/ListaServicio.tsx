@@ -26,14 +26,13 @@ export const ListaServicio = (): JSX.Element => {
     setLoadingComponents(true);
     const data = new FormData();
     data.append("buscar", search);
-    const request = await axios.get(`${Global.url}/galeria`, {
+    const request = await axios.post(`${Global.url}/getServicios`, data, {
       headers: {
         Authorization: `Bearer ${token !== null && token !== "" ? token : ""}`,
       },
     });
-    console.log(request.data.data)
-    setProductos(request.data.data);
-    setTotalRegistros(request.data.data.length);
+    setProductos(request.data);
+    setTotalRegistros(request.data.length);
     setLoadingComponents(false);
   };
 
@@ -45,9 +44,7 @@ export const ListaServicio = (): JSX.Element => {
     return productos.slice(indexOfFirstPost, indexOfLastPost);
   };
 
-  const onSeachChange = ({
-    target,
-  }: React.ChangeEvent<HTMLInputElement>): void => {
+  const onSeachChange = ({ target }: React.ChangeEvent<HTMLInputElement>): void => {
     setpaginaActual(1);
     setSearch(target.value);
   };
@@ -73,9 +70,7 @@ export const ListaServicio = (): JSX.Element => {
   return (
     <>
       <div className="flex flex-col mb-5 md:flex-row md:items-center md:justify-between gap-y-4 ">
-        <div>
-          {/* <h1 className="text-xl font-bold text-gray-100">Lista de Productos</h1> */}
-        </div>
+        <div>{/* <h1 className="text-xl font-bold text-gray-100">Lista de Productos</h1> */}</div>
         <div className="flex flex-col items-center justify-between w-full gap-4 lg:flex-row">
           <button className="flex items-center w-full gap-2 px-4 py-2 transition-colors rounded-lg bg-secondary-100/50 hover:bg-secondary-100 md:w-fit hover:text-white">
             <RiFilter2Fill />
@@ -123,10 +118,7 @@ export const ListaServicio = (): JSX.Element => {
               >
                 <div className="relative aspect-video">
                   <img
-                    src={
-                      `${Global.urlImages}/galeria/${pro.imagen1}` ||
-                      "/placeholder-image.jpg"
-                    }
+                    src={`${Global.urlImages}/galeria/${pro.imagen1}` || "/placeholder-image.jpg"}
                     alt={pro.titulo}
                     className="object-cover w-full h-full"
                   />
@@ -134,11 +126,7 @@ export const ListaServicio = (): JSX.Element => {
                     <Menu
                       menuButton={
                         <MenuButton className="p-2 transition-colors rounded-lg bg-secondary-100/80 backdrop-blur-sm hover:bg-secondary-100">
-                          <svg
-                            className="w-5 h-5"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                          >
+                          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
                           </svg>
                         </MenuButton>
@@ -171,9 +159,7 @@ export const ListaServicio = (): JSX.Element => {
                   </div>
                 </div>
                 <div className="p-4">
-                  <h3 className="mb-2 text-lg font-semibold text-white truncate">
-                    {pro.titulo}
-                  </h3>
+                  <h3 className="mb-2 text-lg font-semibold text-white truncate">{pro.titulo}</h3>
 
                   <p className="mt-2 text-xs text-gray-500">ID: #{pro.id}</p>
                 </div>

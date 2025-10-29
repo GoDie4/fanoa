@@ -29,6 +29,7 @@ const ServicioSchema = Yup.object().shape({
   componente1: Yup.string().required("El componente 1 es obligatorio"),
   componente2: Yup.string().required("El componente 2 es obligatorio"),
   componente3: Yup.string().required("El componente 3 es obligatorio"),
+  componente4: Yup.string().required("El componente 4 es obligatorio"),
 });
 
 export const Editables = (): JSX.Element => {
@@ -84,8 +85,31 @@ export const Editables = (): JSX.Element => {
       componente1: "",
       componente2: "",
       componente3: "",
+      componente4: "",
     },
-    validationSchema: ServicioSchema,
+    validationSchema: Yup.lazy(() =>
+      servicioId
+        ? // Si hay servicioId (actualizando)
+          Yup.object().shape({
+            titulo: Yup.string(),
+            descripcion: Yup.string().max(210, "Máximo 210 caracteres"),
+            componente1: Yup.string(),
+            componente2: Yup.string(),
+            componente3: Yup.string(),
+            componente4: Yup.string(),
+          })
+        : // Si NO hay servicioId (creando)
+          Yup.object().shape({
+            titulo: Yup.string().required("El título es obligatorio"),
+            descripcion: Yup.string()
+              .max(210, "La descripción no puede exceder 210 caracteres")
+              .required("La descripción es obligatoria"),
+            componente1: Yup.string().required("El componente 1 es obligatorio"),
+            componente2: Yup.string().required("El componente 2 es obligatorio"),
+            componente3: Yup.string().required("El componente 3 es obligatorio"),
+            componente4: Yup.string().required("El componente 4 es obligatorio"),
+          })
+    ),
     onSubmit: async (values) => {
       try {
         if (servicioId) {
@@ -243,6 +267,19 @@ export const Editables = (): JSX.Element => {
           <Errors
             errors={servicioFormik.errors.componente3}
             touched={servicioFormik.touched.componente3}
+          />
+
+          <label className="font-medium text-white">Componente 4</label>
+          <InputsBriefs
+            name="componente4"
+            type="text"
+            value={servicioFormik.values.componente4}
+            onChange={servicioFormik.handleChange}
+            onBlur={servicioFormik.handleBlur}
+          />
+          <Errors
+            errors={servicioFormik.errors.componente4}
+            touched={servicioFormik.touched.componente4}
           />
         </div>
 

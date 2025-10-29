@@ -40,6 +40,7 @@ export const EditarTrabajo = (): JSX.Element => {
       imagen: null as File | null,
     },
     onSubmit: async (values) => {
+      console.log(values.descripcion);
       if (!id) return;
       try {
         setLoading(true);

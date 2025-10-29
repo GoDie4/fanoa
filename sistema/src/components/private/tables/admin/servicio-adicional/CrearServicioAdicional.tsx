@@ -10,6 +10,7 @@ import { createServicioAdicionalByCategoryIdAction } from "./actions/createServi
 
 const ServicioAdicionalSchema = Yup.object().shape({
   titulo: Yup.string().required("El título es obligatorio"),
+  subtitulo: Yup.string().required("El subtítulo es obligatorio"),
   imagen: Yup.mixed().required("La imagen es obligatoria"),
 });
 
@@ -23,6 +24,7 @@ export const CrearServicioAdicional = (): JSX.Element => {
   const formik = useFormik({
     initialValues: {
       titulo: "",
+      subtitulo: "",
       imagen: null as File | null,
     },
     validationSchema: ServicioAdicionalSchema,
@@ -34,6 +36,7 @@ export const CrearServicioAdicional = (): JSX.Element => {
 
         const formData = new FormData();
         formData.append("titulo", values.titulo);
+        formData.append("subtitulo", values.subtitulo);
         formData.append("imagen", file);
         formData.append("categoriaId", id || "");
 
@@ -65,6 +68,18 @@ export const CrearServicioAdicional = (): JSX.Element => {
           <Errors errors={formik.errors.titulo} touched={formik.touched.titulo} />
         </div>
 
+        <div className="w-full">
+          <TitleBriefs titulo="Subtítulo del Servicio Adicional" />
+          <InputsBriefs
+            name="subtitulo"
+            type="text"
+            value={formik.values.subtitulo}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <Errors errors={formik.errors.subtitulo} touched={formik.touched.subtitulo} />
+        </div>
+
         {/* Campo de imagen */}
         <ImageUploaderCustom
           file={file}
@@ -80,7 +95,10 @@ export const CrearServicioAdicional = (): JSX.Element => {
 
       {/* Botones */}
       <div className="flex justify-end gap-2">
-        <Link to="/admin/sadicionales" className="px-4 py-2 text-white bg-red-500 rounded-md">
+        <Link
+          to="/admin/servicios-adicional"
+          className="px-4 py-2 text-white bg-red-500 rounded-md"
+        >
           Cancelar
         </Link>
         <input

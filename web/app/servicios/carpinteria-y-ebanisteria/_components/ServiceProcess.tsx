@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useConfig } from "../../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
@@ -8,10 +9,14 @@ export const ServiceProcess = () => {
   const { categorias } = (config as unknown as ConfigResponse).data;
 
   // useEffect(() => {
-  const serviceData = categorias[0].trabajos.map((trabajo) => ({
+  const serviceData = categorias[1]?.trabajos.map((trabajo) => ({
     ...trabajo,
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${trabajo.imagen}`,
   }));
+
+  // useEffect(() => {
+  //   console.log({ serviceData });
+  // }, []);
 
   if (!serviceData) return null;
 
@@ -49,7 +54,9 @@ export const ServiceProcess = () => {
                     <h3 className="text-2xl sm:text-3xl font-bold text-primary">
                       {trabajo.titulo}
                     </h3>
-                    <p className="text-lg text-gray-800 leading-relaxed">{trabajo.descripcion}</p>
+                    <p className="text-lg text-gray-800 leading-relaxed whitespace-pre-line">
+                      {trabajo.descripcion}
+                    </p>
                   </div>
                 </div>
               </div>
