@@ -180,7 +180,7 @@ const ServiceDetailView: React.FC = () => {
       <ServiceProcess />
 
       {/* Gallery Section */}
-      <DetailsServicioGallery alias="first" />
+      <DetailsServicioGallery alias="second" />
 
       {/* Benefits Section */}
       {/* <section className="py-20 px-4 bg-black">

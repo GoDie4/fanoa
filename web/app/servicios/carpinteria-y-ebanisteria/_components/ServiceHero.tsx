@@ -7,9 +7,9 @@ export const ServiceHero = () => {
   const config = useConfig();
   const { categorias } = (config as unknown as ConfigResponse).data;
 
-  const serviceData = categorias[0] && {
-    ...categorias[0],
-    imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_categoria/${categorias[0].imagen}`,
+  const serviceData = categorias[1] && {
+    ...categorias[1],
+    imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_categoria/${categorias[1].imagen}`,
   };
 
   if (!serviceData) return null;

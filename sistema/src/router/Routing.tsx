@@ -14,6 +14,7 @@ import { EditarServicioCategoria } from "../components/private/tables/servicios-
 
 import { ListaProyectos } from "../components/private/tables/admin/proyectos/ListaProyectos";
 
+import { CrearCliente } from "../components/private/tables/clientes/CrearCliente";
 import { CrearProyecto } from "../components/private/tables/admin/proyectos/CrearProyecto";
 import { EditarProyecto } from "../components/private/tables/admin/proyectos/EditarProyecto";
 
@@ -35,7 +36,6 @@ import { EditarMarcas } from "../components/private/tables/admin/marcas/EditarMa
 import { ListaBannerSecundario } from "../components/private/tables/admin/banner-secundario/ListaBannerSecundatio";
 import { CrearBannerSecundario } from "../components/private/tables/admin/banner-secundario/CrearBannerSecundario";
 import { EditarBannerSecundario } from "../components/private/tables/admin/banner-secundario/EditarBannerSecundario";
-import { EditarContacto } from "../components/private/tables/contacto/EditarContacto";
 
 export const Routing = (): JSX.Element => {
   return (
@@ -87,7 +87,7 @@ export const Routing = (): JSX.Element => {
             <Route path="banner-secundario/editar/:id" element={<EditarBannerSecundario />} />
 
             {/* CONFIGURACION */}
-            <Route path="contacto/:id" element={<EditarContacto />} />
+            <Route path="contacto/:id" element={<CrearCliente />} />
           </Route>
           <Route path="*" element={<>Error 404</>} />
         </Routes>

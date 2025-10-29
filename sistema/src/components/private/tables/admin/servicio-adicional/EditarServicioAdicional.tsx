@@ -13,6 +13,7 @@ import { updateServicioAdicionalByIdAction } from "./actions/updateServicioAdici
 
 const ServicioAdicionalSchema = Yup.object().shape({
   titulo: Yup.string().required("El título es obligatorio"),
+  subtitulo: Yup.string().required("El subtítulo es obligatorio"),
   imagen: Yup.mixed().nullable(),
 });
 
@@ -41,6 +42,7 @@ export const EditarServicioAdicional = (): JSX.Element => {
     enableReinitialize: true,
     initialValues: {
       titulo: initialData?.titulo ?? "",
+      subtitulo: initialData?.subtitulo ?? "",
       imagen: null as File | null,
     },
     validationSchema: ServicioAdicionalSchema,
@@ -51,6 +53,7 @@ export const EditarServicioAdicional = (): JSX.Element => {
 
         const formData = new FormData();
         formData.append("titulo", values.titulo);
+        formData.append("subtitulo", values.subtitulo);
         if (file) formData.append("imagen", file);
 
         await updateServicioAdicionalByIdAction(id, formData);
@@ -71,17 +74,31 @@ export const EditarServicioAdicional = (): JSX.Element => {
   return (
     <form className="p-8 bg-secondary-100 rounded-xl" onSubmit={formik.handleSubmit}>
       <div className="flex flex-col gap-4 mb-5">
-        <TitleBriefs titulo="Editar Servicio Adicional" />
+        <div className="w-full">
+          <TitleBriefs titulo="Editar Servicio Adicional" />
 
-        {/* Campo de título */}
-        <InputsBriefs
-          name="titulo"
-          type="text"
-          value={formik.values.titulo}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-        />
-        <Errors errors={formik.errors.titulo} touched={formik.touched.titulo} />
+          {/* Campo de título */}
+          <InputsBriefs
+            name="titulo"
+            type="text"
+            value={formik.values.titulo}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <Errors errors={formik.errors.titulo} touched={formik.touched.titulo} />
+        </div>
+
+        <div className="w-full">
+          <TitleBriefs titulo="Subtítulo del Servicio Adicional" />
+          <InputsBriefs
+            name="subtitulo"
+            type="text"
+            value={formik.values.subtitulo}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+          />
+          <Errors errors={formik.errors.subtitulo} touched={formik.touched.subtitulo} />
+        </div>
 
         {/* Imagen actual */}
         <ImageUploaderCustom

@@ -21,6 +21,7 @@ const getFolderByRoute = (req: any): string => {
   if (originalUrl.includes("bsecundarios")) return "banners-secundarios";
   if (originalUrl.includes("bprincipales")) return "banners-principales";
   if (originalUrl.includes("contacto")) return "contacto";
+  if (originalUrl.includes("bfinal")) return "banners-final";
   return "otros";
 };
 

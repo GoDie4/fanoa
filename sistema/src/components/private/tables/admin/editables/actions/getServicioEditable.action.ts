@@ -6,6 +6,7 @@ export interface ServicioEditableResponse {
   componente1: string;
   componente2: string;
   componente3: string;
+  componente4: string;
   createdAt: string;
   updatedAt: string;
 }

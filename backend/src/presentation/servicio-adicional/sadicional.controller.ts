@@ -45,7 +45,7 @@ export const servicioAdicionalController = {
 
   createServicioAdicional: async (req: Request, res: Response) => {
     try {
-      const { titulo, categoriaId } = req.body;
+      const { titulo, subtitulo, categoriaId } = req.body;
       const imagen = req.file ? req.file.filename : "";
 
       if (!titulo || !categoriaId) {
@@ -63,6 +63,7 @@ export const servicioAdicionalController = {
       const nuevoServicio = await prisma.servicioAdicional.create({
         data: {
           titulo,
+          subtitulo,
           imagen,
           categoriaId,
         },
@@ -78,7 +79,7 @@ export const servicioAdicionalController = {
   updateServicioAdicional: async (req: Request, res: Response) => {
     try {
       const id = String(req.params.id);
-      const { titulo, categoriaId } = req.body;
+      const { titulo, subtitulo, categoriaId } = req.body;
 
       const existente = await prisma.servicioAdicional.findUnique({
         where: { id },
@@ -99,6 +100,7 @@ export const servicioAdicionalController = {
         where: { id },
         data: {
           titulo,
+          subtitulo,
           categoriaId,
           imagen,
         },

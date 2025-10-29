@@ -7,9 +7,9 @@ export const AdditionalService = () => {
   const config = useConfig();
   const { categorias } = (config as unknown as ConfigResponse).data;
 
-  const serviceData = categorias[0] && {
-    ...categorias[0],
-    serviciosAdicionales: categorias[0]?.serviciosAdicionales.map((s) => ({
+  const serviceData = categorias[1] && {
+    ...categorias[1],
+    serviciosAdicionales: categorias[1]?.serviciosAdicionales.map((s) => ({
       ...s,
       imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_adicional/${s.imagen}`,
     })),

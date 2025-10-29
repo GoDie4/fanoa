@@ -71,6 +71,9 @@ export const AdditionalService = () => {
                   <h3 className="text-xl font-bold text-white leading-tight group-hover:translate-y-[-4px] transition-transform duration-500">
                     {servicio.titulo}
                   </h3>
+                  <h2 className="text-base font-bold text-white leading-tight group-hover:translate-y-[-4px] transition-transform duration-500">
+                    {servicio.subtitulo}
+                  </h2>
                 </div>
               </div>
 

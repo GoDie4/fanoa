@@ -66,6 +66,10 @@ const ServicesSection: React.FC = () => {
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_categoria/${categoria.imagen}`,
   }));
 
+  // useEffect(() => {
+  //   console.log(!servicioEditables[0].componente4);
+  // }, []);
+
   const generateSlug = (text: string): string => {
     return text
       .toLowerCase()
@@ -76,6 +80,23 @@ const ServicesSection: React.FC = () => {
       .replace(/\s+/g, "-") // reemplaza espacios por guiones
       .replace(/-+/g, "-"); // evita guiones repetidos
   };
+
+  const componentes = [
+    servicioEditables[0]?.componente1,
+    servicioEditables[0]?.componente2,
+    servicioEditables[0]?.componente3,
+    servicioEditables[0]?.componente4,
+  ].filter((c) => c && c.trim() !== ""); // solo cuenta los que tienen texto
+
+  const gridCols =
+    componentes.length === 4
+      ? "lg:grid-cols-4"
+      : componentes.length === 3
+      ? "lg:grid-cols-3"
+      : componentes.length === 2
+      ? "lg:grid-cols-2"
+      : "lg:grid-cols-1";
+
   return (
     <section className="min-h-screen  py-20  bg-white">
       <div className="container mx-auto mb-20 px-4 md:px-14">
@@ -114,7 +135,10 @@ const ServicesSection: React.FC = () => {
 
         {/* Barra inferior con stats */}
         <div className="mt-12 pt-8 border-t border-primary/50">
-          <div className="grid grid-cols-3 gap-6 text-center">
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 ${gridCols}  
+            gap-6 text-center`}
+          >
             <div className="space-y-1">
               <div className="text-3xl font-bold text-gray-900">
                 {servicioEditables[0]?.componente1.split(" ")[0]}
@@ -137,6 +161,14 @@ const ServicesSection: React.FC = () => {
               </div>
               <div className="text-xs uppercase tracking-wider text-gray-800">
                 {servicioEditables[0]?.componente3.split(" ").slice(1, 3).join(" ")}
+              </div>
+            </div>
+            <div className="space-y-1">
+              <div className="text-3xl font-bold text-gray-900">
+                {servicioEditables[0]?.componente4.split(" ")[0]}
+              </div>
+              <div className="text-xs uppercase tracking-wider text-gray-800">
+                {servicioEditables[0]?.componente4.split(" ").slice(1, 3).join(" ")}
               </div>
             </div>
           </div>

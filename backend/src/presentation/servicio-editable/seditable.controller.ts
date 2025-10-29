@@ -32,14 +32,14 @@ export const servicioEditableController = {
 
   async create(req: Request, res: Response) {
     try {
-      const { titulo, descripcion, componente1, componente2, componente3 } = req.body;
+      const { titulo, descripcion, componente1, componente2, componente3, componente4 } = req.body;
 
-      if (!titulo || !descripcion || !componente1 || !componente2 || !componente3) {
+      if (!titulo || !descripcion || !componente1 || !componente2 || !componente3 || !componente4) {
         return res.status(400).json({ message: "Todos los campos son requeridos" });
       }
 
       const nuevoServicio = await prisma.servicioEditable.create({
-        data: { titulo, descripcion, componente1, componente2, componente3 },
+        data: { titulo, descripcion, componente1, componente2, componente3, componente4 },
       });
 
       res.status(201).json(nuevoServicio);
@@ -52,14 +52,14 @@ export const servicioEditableController = {
   async update(req: Request, res: Response) {
     try {
       const id = String(req.params.id);
-      const { titulo, descripcion, componente1, componente2, componente3 } = req.body;
+      const { titulo, descripcion, componente1, componente2, componente3, componente4 } = req.body;
 
       const existente = await prisma.servicioEditable.findUnique({ where: { id } });
       if (!existente) return res.status(404).json({ message: "Servicio no encontrado" });
 
       const actualizado = await prisma.servicioEditable.update({
         where: { id },
-        data: { titulo, descripcion, componente1, componente2, componente3 },
+        data: { titulo, descripcion, componente1, componente2, componente3, componente4 },
       });
 
       res.json(actualizado);
