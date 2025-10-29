@@ -27,13 +27,13 @@ export const Banner: React.FC<BannerProps> = ({
   let backgroundImage: string = "https://images.unsplash.com/photo-1557683316-973673baf926?w=1200";
 
   if (id === "nosotros") {
-    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[0].imagen}`;
+    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[0]?.imagen}`;
   } else if (id === "servicios") {
-    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[1].imagen}`;
+    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[1]?.imagen}`;
   } else if (id === "galeria") {
-    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[2].imagen}`;
+    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[2]?.imagen}`;
   } else if (id === "contacto") {
-    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[3].imagen}`;
+    backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[3]?.imagen}`;
   }
 
   console.log({ backgroundImage });

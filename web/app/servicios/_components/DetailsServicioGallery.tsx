@@ -2,12 +2,16 @@
 import React, { useEffect, useState } from "react";
 import { useConfig } from "../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
+import Lightbox from "yet-another-react-lightbox";
+import Zoom from "yet-another-react-lightbox/plugins/zoom";
+import "yet-another-react-lightbox/styles.css";
+// import "yet-another-react-lightbox/plugins/zoom.css";
 
 export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" }) => {
   const config = useConfig();
   const { categorias } = (config as unknown as ConfigResponse).data || {};
   const [, setScrollY] = useState(0);
-  const [, setSelectedImage] = useState<number | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   let serviceData;
 
@@ -34,6 +38,7 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
   return (
     <section className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
@@ -43,12 +48,14 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
             Proyectos Destacados
           </h2>
         </div>
+
+        {/* Gallery grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {serviceData?.proyectos.map((image) => (
+          {serviceData?.proyectos.map((image, index) => (
             <div
               key={image.id}
               className="group relative aspect-[4/3] overflow-hidden rounded-2xl cursor-pointer"
-              onClick={() => setSelectedImage(Number(image.createdAt))}
+              onClick={() => setSelectedIndex(index)}
             >
               <div
                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
@@ -60,12 +67,28 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
                   <div className="w-12 h-12 mx-auto rounded-full border-2 border-white flex items-center justify-center">
                     <span className="text-white text-xl">+</span>
                   </div>
-                  <p className="text-white font-semibold">{image.titulo}</p>
                 </div>
               </div>
             </div>
           ))}
         </div>
+
+        {selectedIndex !== null && (
+          <Lightbox
+            open={selectedIndex !== null}
+            close={() => setSelectedIndex(null)}
+            slides={serviceData?.proyectos.map((p) => ({ src: p.imagen })) || []}
+            index={selectedIndex ?? 0}
+            plugins={[Zoom]}
+            animation={{ zoom: 500 }}
+            styles={{
+              container: {
+                backgroundColor: "rgba(10, 10, 10, 0.85)",
+                backdropFilter: "blur(6px)",
+              },
+            }}
+          />
+        )}
       </div>
     </section>
   );

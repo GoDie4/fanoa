@@ -14,7 +14,8 @@
     "next": "15.5.5",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-floating-whatsapp": "^5.0.8"
+    "react-floating-whatsapp": "^5.0.8",
+    "yet-another-react-lightbox": "^3.25.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

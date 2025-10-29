@@ -92,7 +92,7 @@ export const Editables = (): JSX.Element => {
         ? // Si hay servicioId (actualizando)
           Yup.object().shape({
             titulo: Yup.string(),
-            descripcion: Yup.string().max(130, "Máximo 130 caracteres"),
+            descripcion: Yup.string().max(210, "Máximo 210 caracteres"),
             componente1: Yup.string(),
             componente2: Yup.string(),
             componente3: Yup.string(),
@@ -102,7 +102,7 @@ export const Editables = (): JSX.Element => {
           Yup.object().shape({
             titulo: Yup.string().required("El título es obligatorio"),
             descripcion: Yup.string()
-              .max(130, "La descripción no puede exceder 130 caracteres")
+              .max(210, "La descripción no puede exceder 210 caracteres")
               .required("La descripción es obligatoria"),
             componente1: Yup.string().required("El componente 1 es obligatorio"),
             componente2: Yup.string().required("El componente 2 es obligatorio"),

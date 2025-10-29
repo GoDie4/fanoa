@@ -86,7 +86,7 @@ const ServicesSection: React.FC = () => {
     servicioEditables[0]?.componente2,
     servicioEditables[0]?.componente3,
     servicioEditables[0]?.componente4,
-  ].filter((c) => c && c.trim() !== ""); // solo cuenta los que tienen texto
+  ].filter((c) => c && c.trim() !== "");
 
   const gridCols =
     componentes.length === 4
@@ -118,7 +118,7 @@ const ServicesSection: React.FC = () => {
           {/* Columna derecha - Descripción vertical */}
           <div className="lg:col-span-4 flex flex-col justify-end">
             <div className="space-y-6">
-              <p className="text-gray-800 text-base lg:text-lg leading-relaxed">
+              <p className="text-gray-800 text-base lg:text-lg leading-relaxed text-justify">
                 {/* Experiencias visuales que transforman marcas en referentes de la industria. Tenemos
                 presencia <strong>nacional</strong> o <strong>internacional</strong>. */}
                 {highlightWords(servicioEditables[0]?.descripcion, ["nacional", "internacional"])}
@@ -135,42 +135,21 @@ const ServicesSection: React.FC = () => {
 
         {/* Barra inferior con stats */}
         <div className="mt-12 pt-8 border-t border-primary/50">
-          <div
-            className={`grid grid-cols-1 md:grid-cols-2 ${gridCols}  
-            gap-6 text-center`}
-          >
-            <div className="space-y-1">
-              <div className="text-3xl font-bold text-gray-900">
-                {servicioEditables[0]?.componente1.split(" ")[0]}
-              </div>
-              <div className="text-xs uppercase tracking-wider text-gray-800">
-                {servicioEditables[0]?.componente1.split(" ").slice(1, 3).join(" ")}
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-3xl font-bold text-gray-900">
-                {servicioEditables[0]?.componente2.split(" ")[0]}
-              </div>
-              <div className="text-xs uppercase tracking-wider text-gray-800">
-                {servicioEditables[0]?.componente2.split(" ").slice(1, 3).join(" ")}
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-3xl font-bold text-gray-900">
-                {servicioEditables[0]?.componente3.split(" ")[0]}
-              </div>
-              <div className="text-xs uppercase tracking-wider text-gray-800">
-                {servicioEditables[0]?.componente3.split(" ").slice(1, 3).join(" ")}
-              </div>
-            </div>
-            <div className="space-y-1">
-              <div className="text-3xl font-bold text-gray-900">
-                {servicioEditables[0]?.componente4.split(" ")[0]}
-              </div>
-              <div className="text-xs uppercase tracking-wider text-gray-800">
-                {servicioEditables[0]?.componente4.split(" ").slice(1, 3).join(" ")}
-              </div>
-            </div>
+          <div className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-6 text-center`}>
+            {componentes.map((comp, i) => {
+              const words = comp.trim().split(" ");
+              const lastWord = words.pop();
+              const top = words.join(" ");
+
+              return (
+                <div key={i} className="space-y-1">
+                  <div className="text-2xl font-bold text-gray-900">{top}</div>
+                  {lastWord && (
+                    <div className="text-xs uppercase tracking-wider text-gray-800">{lastWord}</div>
+                  )}
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
