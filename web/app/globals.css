@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+
+}
+
+@theme inline {
+  --font-sans: var(--font-encode);
+  --font-mono: var(--font-geist-mono);  --rounded-main: "1rem";
+  --color-primary-50: #eaf4ff;
+  --color-primary-100: #d9ebff;
+  --color-primary-200: #bad9ff;
+  --color-primary-300: #91beff;
+  --color-primary-400: #6597ff;
+  --color-primary-500: #426fff;
+  --color-primary-600: #2143ff;
+  --color-primary-700: #1633ec;
+  --color-primary: #1630c3;
+  --color-primary-900: #1b3194;
+  --color-primary-950: #101b56;
+
+  --color-secondary-50: #fef1fa;
+  --color-secondary-100: #fde6f6;
+  --color-secondary-200: #feccee;
+  --color-secondary-300: #ffa2df;
+  --color-secondary-400: #fd69c8;
+  --color-secondary: #f84ab5;
+  --color-secondary-600: #e81a8f;
+  --color-secondary-700: #ca0c72;
+  --color-secondary-800: #a60e5d;
+  --color-secondary-900: #8a1151;
+  --color-secondary-950: #55022d;
+
+  --color-morado-50: #fbf3ff;
+  --color-morado-100: #f6e4ff;
+  --color-morado-200: #eeceff;
+  --color-morado-300: #e0a7ff;
+  --color-morado-400: #ce6fff;
+  --color-morado-500: #bc38ff;
+  --color-morado-600: #ab13ff;
+  --color-morado-700: #9604ec;
+  --color-morado: #8a0ad1;
+  --color-morado-900: #68099a;
+  --color-morado-950: #480074;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}

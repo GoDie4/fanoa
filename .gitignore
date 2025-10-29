@@ -1,0 +1,130 @@
+# ---------------------------
+# 🔧 Node.js / General
+# ---------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+yarn.lock
+.pnpm-debug.log
+*.tgz
+.env
+.env.*
+!.env.example
+
+# ---------------------------
+# 🧩 Monorepo structure
+# ---------------------------
+/apps/*/node_modules/
+/packages/*/node_modules/
+/apps/*/dist/
+/apps/*/build/
+/packages/*/dist/
+/packages/*/build/
+
+# ---------------------------
+# 🧠 TypeScript
+# ---------------------------
+*.tsbuildinfo
+*.tscache
+tsconfig.tsbuildinfo
+/dist/
+/build/
+/out/
+/tmp/
+.temp/
+
+# ---------------------------
+# ⚙️ Prisma
+# ---------------------------
+/prisma/migrations/dev.db-journal
+/prisma/dev.db
+/prisma/*.sqlite
+/prisma/.env
+/prisma/generated/
+*.db
+*.db-journal
+
+# ---------------------------
+# ⚡ Next.js
+# ---------------------------
+.next/
+out/
+.vercel/
+.next-static/
+.cache/
+# Exported static files
+*.next.js
+*.next.json
+
+# ---------------------------
+# 🚀 Vite
+# ---------------------------
+dist/
+.vite/
+vite.config.ts.timestamp-*
+vite.config.*.timestamp-*
+vite.config.js.timestamp-*
+
+# ---------------------------
+# 💻 IDEs y editores
+# ---------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+*.orig
+*.log
+.DS_Store
+Thumbs.db
+*.iml
+
+# ---------------------------
+# 🧪 Testing / Coverage
+# ---------------------------
+coverage/
+.nyc_output/
+jest-html-reporters-*.html
+playwright-report/
+test-results/
+*.lcov
+
+# ---------------------------
+# 📦 Build artifacts
+# ---------------------------
+*.zip
+*.tar
+*.gz
+
+# ---------------------------
+# 🧰 System files
+# ---------------------------
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.Trash-*/
+*.pid
+*.seed
+*.pid.lock
+
+# ---------------------------
+# 🧑‍💻 Local only config
+# ---------------------------
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.local.json
+*.local.yml
+
+# ---------------------------
+# 🪄 Optional: OS / Editor cache
+# ---------------------------
+__pycache__/
+*.cache/
+.cache-loader/
