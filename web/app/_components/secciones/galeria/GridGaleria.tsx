@@ -43,7 +43,7 @@ export const GridGaleria = () => {
     const patternItem = pattern[index % pattern.length];
     return {
       id: item.id,
-      url: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/galeria/${item.imagen}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/galeria/${item.imagen1}`,
       nombre: item.nombre || item.titulo || '',
       span: patternItem.span,
       animationType: patternItem.animationType,
