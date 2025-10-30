@@ -3,7 +3,6 @@
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GridGaleria } from "./galeria/GridGaleria";
-import { Global } from "@/utils/global";
 
 export interface GalleryImage {
   id: number;
@@ -157,7 +156,7 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
       animate={isInView ? "visible" : "hidden"}
     >
       <motion.img
-        src={`${Global.urlImages}/galeria/${image.url}`}
+        src={`${image.url}`}
         alt={`Gallery image ${image.id}`}
         className="object-cover w-full h-full"
         whileHover={{ scale: 1.05 }}
