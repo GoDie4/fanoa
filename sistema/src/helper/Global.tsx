@@ -4,6 +4,6 @@
 // }
 
 export const Global = {
-  url: 'http://localhost:4000/api/v1',
-  urlImages: 'http://localhost:4000/api'
+  url: 'https://fanoa.onrender.com/api',
+  urlImages: 'https://fanoa.onrender.com'
 }

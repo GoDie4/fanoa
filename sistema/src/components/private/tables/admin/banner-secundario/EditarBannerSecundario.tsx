@@ -18,7 +18,7 @@ export const EditarBannerSecundario = (): JSX.Element => {
       imagen: null as File | null,
     },
     enableReinitialize: true,
-    onSubmit: async (values) => {
+    onSubmit: async () => {
       try {
         if (!id) return;
         setLoading(true);
@@ -64,7 +64,7 @@ export const EditarBannerSecundario = (): JSX.Element => {
           {/* Imagen actual */}
           {previewImage && (
             <div className="mt-4 mb-4">
-              <p className="text-white mb-2">Imagen actual:</p>
+              <p className="mb-2 text-white">Imagen actual:</p>
               <img
                 src={previewImage}
                 alt="Banner Secundario actual"
@@ -84,7 +84,7 @@ export const EditarBannerSecundario = (): JSX.Element => {
           />
 
           {previewImage && (
-            <p className="text-sm text-gray-300 mt-2 italic">
+            <p className="mt-2 text-sm italic text-gray-300">
               Puedes reemplazar la imagen actual seleccionando una nueva.
             </p>
           )}

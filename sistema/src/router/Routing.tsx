@@ -2,7 +2,6 @@ import { Routes, Route, BrowserRouter } from "react-router-dom";
 import { AuthProvider } from "../context/AuthProvider";
 import { Login } from "../components/public/Login";
 import { PrivateLayout } from "../components/private/PrivateLayout";
-import Home from "../components/private/tables/Home";
 // import { PrivateLayoutV2 } from "../components/private/PrivateLayoutV2";
 
 import { ListaServicioCategoria } from "../components/private/tables/servicios-categoria/ListaServicioCategoria";
@@ -46,7 +45,7 @@ export const Routing = (): JSX.Element => {
           <Route path="login" element={<Login />} />
           <Route path="admin" element={<PrivateLayout />}>
             {/* <Route path="admin" element={<PrivateLayoutV2 />}> */}
-            <Route index element={<Home />} />
+            <Route index element={<ListaBannersPrincipal />} />
 
             {/* NOTICIAS */}
             <Route path="galeria" element={<ListaGaleria />} />

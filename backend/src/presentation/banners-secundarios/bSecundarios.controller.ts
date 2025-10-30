@@ -6,7 +6,7 @@ import path from "path";
 const uploadDir = path.resolve(__dirname, "../../../uploads/banners-secundarios");
 
 export const bSecundariosController = {
-  async getAll(res: Response) {
+  async getAll(_req: Request,res: Response) {
     try {
       const banners = await prisma.bannerSecundario.findMany({
         orderBy: { createdAt: "asc" },

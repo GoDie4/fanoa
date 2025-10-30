@@ -8,14 +8,12 @@ interface Inputs {
 }
 
 export const InputsBriefs = (props: Inputs): JSX.Element => {
-  const { rows = 6, ...rest } = props;
+  const { rows = 6 } = props;
 
   if (props.type === "textarea") {
     return (
       <textarea
-        className="border border-black placeholder-gray-400 outline-none focus:outline-none
-                   focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mb-0 text-base block bg-secondary-900
-                   rounded-md transition-all"
+        className="block w-full pt-4 pb-4 pl-4 pr-4 mt-2 mb-0 text-base placeholder-gray-400 transition-all border border-black rounded-md outline-none focus:outline-none focus:border-black bg-secondary-900"
         name={props.name}
         value={props.value}
         onChange={props.onChange}
@@ -27,9 +25,7 @@ export const InputsBriefs = (props: Inputs): JSX.Element => {
 
   return (
     <input
-      className="border border-black placeholder-gray-400 outline-none focus:outline-none
-                 focus:border-black w-full pt-4 pr-4 pb-4 pl-4 mt-2 mb-0 text-base block bg-secondary-900
-                 rounded-md transition-all"
+      className="block w-full pt-4 pb-4 pl-4 pr-4 mt-2 mb-0 text-base placeholder-gray-400 transition-all border border-black rounded-md outline-none focus:outline-none focus:border-black bg-secondary-900"
       type={props.type}
       name={props.name}
       value={props.value}

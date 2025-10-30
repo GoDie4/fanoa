@@ -20,14 +20,14 @@ const Header = (): JSX.Element => {
   return (
     <header className="h-[7vh] md:h-[10vh] border-b border-secondary-100 p-8 flex items-center justify-between">
       <div className="flex gap-3 md:gap-5">
-        <p className="font-bold text-white  text-sm md:text-xl">{title}</p>
+        <p className="text-sm font-bold text-white md:text-xl">{title}</p>
       </div>
       <nav className="flex items-center gap-2">
         <Menu
           menuButton={
-            <MenuButton className="flex items-center gap-x-2 hover:bg-secondary-100 p-2 rounded-lg transition-colors">
-              <img src={icono} className="w-6 h-6 object-contain rounded-full" />
-              <span>{user?.name}</span>
+            <MenuButton className="flex items-center p-2 transition-colors rounded-lg gap-x-2 hover:bg-secondary-100">
+              <img src={icono} className="object-contain w-6 h-6 rounded-full" />
+              {/* <span>{user?.name}</span> */}
               <RiArrowDownSLine />
             </MenuButton>
           }
@@ -39,11 +39,11 @@ const Header = (): JSX.Element => {
           <MenuItem className="p-0 hover:bg-transparent">
             <Link
               to="/perfil"
-              className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+              className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
             >
-              <img src={icono} className="w-8 h-8 object-contain rounded-full" />
+              <img src={icono} className="object-contain w-8 h-8 rounded-full" />
               <div className="flex flex-col text-sm">
-                <span className="text-sm">{user?.name}</span>
+                {/* <span className="text-sm">{user?.name}</span> */}
                 <span className="text-xs text-gray-500">{user?.email}</span>
               </div>
             </Link>
@@ -56,7 +56,7 @@ const Header = (): JSX.Element => {
               onClick={() => {
                 void cerrarSession();
               }}
-              className="rounded-lg transition-colors text-gray-300 hover:bg-secondary-900 flex items-center gap-x-4 py-2 px-6 flex-1"
+              className="flex items-center flex-1 px-6 py-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4"
             >
               <RiLogoutCircleRLine /> Cerrar sesión
             </Link>

@@ -21,16 +21,6 @@ const ContactoSchema = Yup.object().shape({
   descripcion: Yup.string().required("La descripción es obligatoria"),
 });
 
-const ServicioSchema = Yup.object().shape({
-  titulo: Yup.string().required("El título es obligatorio"),
-  descripcion: Yup.string()
-    .max(130, "La descripción no puede exceder 130 caracteres")
-    .required("La descripción es obligatoria"),
-  componente1: Yup.string().required("El componente 1 es obligatorio"),
-  componente2: Yup.string().required("El componente 2 es obligatorio"),
-  componente3: Yup.string().required("El componente 3 es obligatorio"),
-  componente4: Yup.string().required("El componente 4 es obligatorio"),
-});
 
 export const Editables = (): JSX.Element => {
   // --- ESTADOS ---
@@ -166,7 +156,7 @@ export const Editables = (): JSX.Element => {
       <form className="p-8 bg-secondary-100 rounded-xl" onSubmit={contactoFormik.handleSubmit}>
         <TitleBriefs titulo="Contacto" />
 
-        <div className="flex flex-col gap-4 mb-5 mt-10">
+        <div className="flex flex-col gap-4 mt-10 mb-5">
           <label className="font-medium text-white">Título del contacto</label>
           <InputsBriefs
             name="titulo"
@@ -205,7 +195,7 @@ export const Editables = (): JSX.Element => {
       <form className="p-8 bg-secondary-100 rounded-xl" onSubmit={servicioFormik.handleSubmit}>
         <TitleBriefs titulo="Servicio Editable" />
 
-        <div className="flex flex-col gap-4 mb-5 mt-10">
+        <div className="flex flex-col gap-4 mt-10 mb-5">
           <label className="font-medium text-white">Título del servicio</label>
           <InputsBriefs
             name="titulo"

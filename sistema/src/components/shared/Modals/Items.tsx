@@ -1,15 +1,15 @@
-import React from 'react';
-import Avatar from '@mui/material/Avatar';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import ListItemButton from '@mui/material/ListItemButton';
-import DialogTitle from '@mui/material/DialogTitle';
-import Dialog from '@mui/material/Dialog';
-import Typography from '@mui/material/Typography';
-import Snackbar from '@mui/material/Snackbar';
-import { DialogBody } from '@material-tailwind/react';
-import { Global } from '../../../helper/Global';
+import React from "react";
+import Avatar from "@mui/material/Avatar";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import ListItemButton from "@mui/material/ListItemButton";
+import DialogTitle from "@mui/material/DialogTitle";
+import Dialog from "@mui/material/Dialog";
+import Typography from "@mui/material/Typography";
+import Snackbar from "@mui/material/Snackbar";
+import { DialogBody } from "@material-tailwind/react";
+import { Global } from "../../../helper/Global";
 
 interface SimpleDialogProps {
   open: boolean;
@@ -53,7 +53,7 @@ const Items = ({
   const handleListItemClick = (value: string) => {
     if (selectedValues.includes(value)) {
       setSelectedValues((prevSelectedValues) =>
-        prevSelectedValues.filter((val) => val !== value),
+        prevSelectedValues.filter((val) => val !== value)
       );
     } else if (selectedValues.length < 10) {
       setSelectedValues((prevSelectedValues) => [...prevSelectedValues, value]);
@@ -86,7 +86,7 @@ const Items = ({
                         src={`${Global.urlImages}/${carpeta}/${imageUrl.imagen1}`}
                         alt={`Image ${index}`}
                         className="block mx-auto"
-                        style={{ objectFit: 'contain', width: '50px' }}
+                        style={{ objectFit: "contain", width: "50px" }}
                       />
                     </Avatar>
                   </ListItemAvatar>
@@ -94,8 +94,9 @@ const Items = ({
               </ListItem>
             ))}
           </List>
+          {/* @ts-ignore */}
           <DialogBody>
-            <div className="grid grid-cols-4 gap-x-5 gap-y-5 px-4">
+            <div className="grid grid-cols-4 px-4 gap-x-5 gap-y-5">
               {selectedValues.map((value, index) => (
                 <div key={index}>
                   <img
@@ -112,7 +113,7 @@ const Items = ({
   }
 
   return (
-    <div className="flex gap-5 items-center">
+    <div className="flex items-center gap-5">
       <button
         onClick={handleClickOpen}
         className="bg-[#00365F] px-6 py-2 rounded-md h-fit font-bold"
@@ -122,7 +123,7 @@ const Items = ({
       <Typography
         variant="subtitle1"
         component="div"
-        className="grid grid-cols-5 py-3 px-3 items-center gap-x-3 gap-y-3 bg-white rounded-xl"
+        className="grid items-center grid-cols-5 px-3 py-3 bg-white gap-x-3 gap-y-3 rounded-xl"
       >
         {selectedValues.map((value, index) => (
           <div key={index}>
