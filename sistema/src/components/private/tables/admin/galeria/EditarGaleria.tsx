@@ -4,10 +4,10 @@ import { useFormik } from "formik";
 import { TitleBriefs } from "../../../../shared/TitleBriefs";
 import { ImageUploaderCustom } from "../../servicios-categoria/components/ImageUploaderCustom";
 import Swal from "sweetalert2";
-import { updateMarcaAction } from "./actions/updateMarca.action";
-import { getMarcaById } from "./actions/getMarcaById.action";
+import { updateGaleriaAction } from "./actions/updateGaleria.action";
+import { getGaleriaById } from "./actions/getGaleriaById.action";
 
-export const EditarMarcas = (): JSX.Element => {
+export const EditarGaleria = (): JSX.Element => {
   const navigate = useNavigate();
   const { id } = useParams<{ id: string }>();
   const [file, setFile] = useState<File | null>(null);
@@ -16,7 +16,7 @@ export const EditarMarcas = (): JSX.Element => {
 
   const formik = useFormik({
     initialValues: {
-      imagen: null as File | null,
+      imagen1: null as File | null,
     },
     enableReinitialize: true,
     onSubmit: async () => {
@@ -25,25 +25,25 @@ export const EditarMarcas = (): JSX.Element => {
         setLoading(true);
 
         const formData = new FormData();
-        if (file) formData.append("imagen", file);
+        if (file) formData.append("imagen1", file);
 
-        await updateMarcaAction(id, formData);
+        await updateGaleriaAction(id, formData);
 
         Swal.fire({
           icon: "success",
-          title: "Marca actualizada",
-          text: "La marca se actualizó correctamente.",
+          title: "Galería actualizada",
+          text: "La galería se actualizó correctamente.",
           confirmButtonColor: "#22c55e",
         });
 
         setFile(null);
         navigate(-1);
       } catch (error) {
-        console.error("Error al actualizar la marca:", error);
+        console.error("Error al actualizar la galería:", error);
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "Hubo un problema al actualizar la marca. Intenta nuevamente.",
+          text: "Hubo un problema al actualizar la galería. Intenta nuevamente.",
           confirmButtonColor: "#ef4444",
         });
       } finally {
@@ -53,27 +53,27 @@ export const EditarMarcas = (): JSX.Element => {
   });
 
   useEffect(() => {
-    const fetchMarca = async () => {
+    const fetchGaleria = async () => {
       if (!id) return;
       setLoading(true);
       try {
-        const marca = await getMarcaById(id);
-        setPreviewImage(marca.imagen);
+        const galeria = await getGaleriaById(id);
+        setPreviewImage(galeria.imagen1);
         formik.setFieldValue("imagen", null);
       } catch (error) {
-        console.error("Error al cargar la marca:", error);
+        console.error("Error al cargar la galeria:", error);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchMarca();
+    fetchGaleria();
   }, [id]);
 
   return (
     <form className="p-8 bg-secondary-100 rounded-xl" onSubmit={formik.handleSubmit}>
       <div className="flex flex-col gap-4 mb-5">
-        <TitleBriefs titulo="Imagen de la Marca" />
+        <TitleBriefs titulo="Imagen" />
 
         {previewImage && !file && (
           <div className="mb-4">
@@ -97,8 +97,8 @@ export const EditarMarcas = (): JSX.Element => {
           </p>
         )}
 
-        {formik.errors.imagen && formik.touched.imagen && (
-          <p className="text-red-500">{formik.errors.imagen}</p>
+        {formik.errors.imagen1 && formik.touched.imagen1 && (
+          <p className="text-red-500">{formik.errors.imagen1}</p>
         )}
       </div>
 

@@ -33,7 +33,7 @@ export const servicioPrincipalController = {
 
   async create(req: Request, res: Response) {
     try {
-      const { titulo, descripcion, componente1, componente2, componente3 } =
+      const { titulo, descripcion, componente1, componente2, componente3, componente4 } =
         req.body;
 
       // Validar campos
@@ -51,7 +51,7 @@ export const servicioPrincipalController = {
       }
 
       const nuevoServicio = await prisma.servicioEditable.create({
-        data: { titulo, descripcion, componente1, componente2, componente3 },
+        data: { titulo, descripcion, componente1, componente2, componente3, componente4 },
       });
 
       res.status(201).json(nuevoServicio);

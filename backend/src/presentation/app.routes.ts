@@ -12,6 +12,8 @@ import { authRoute } from "./auth/auth.route";
 import { servicioEditableRoute } from "./servicio-editable/seditable.route";
 import { generalRoute } from "./main/general.route";
 import { bFinalRoute } from "./banners-final/bFinal.route";
+import { configuracionRoute } from "./configuraciones/configuraciones.route";
+import { galeriaRoute } from "./galeria/galeria.route";
 
 export const appRouter = () => {
   const router = Router();
@@ -23,8 +25,10 @@ export const appRouter = () => {
   router.use("/proyectos", proyectosRoute());
   router.use("/trabajo", trabajosRoute());
   router.use("/feria", feriaRoute());
+  router.use("/galeria", galeriaRoute());
   router.use("/bsecundarios", bSecundariosRoute());
   router.use("/contacto", contactoRoute());
+  router.use("/configuracion", configuracionRoute());
   router.use("/bprincipales", bannersPrincipalesRoute());
   router.use("/auth", authRoute());
   //PARA TRAER TODOS LOS DATOS

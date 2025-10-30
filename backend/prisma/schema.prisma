@@ -1,145 +1,176 @@
-
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+    provider      = "prisma-client"
+    output        = "../generated/prisma"
+    binaryTargets = ["native", "windows", "debian-openssl-1.1.x"]
 }
 
 datasource db {
-  provider = "mysql"
-  url      = env("DATABASE_URL")
+    provider = "mysql"
+    url      = env("DATABASE_URL")
 }
 
 model ServicioCategoria {
-  id          String   @id @default(uuid())
-  titulo      String
-  subtitulo   String
-  descripcion String   @db.Text
-  imagen      String
-  miniTitulo      String
-  miniDescripcion String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id              String   @id @default(uuid())
+    titulo          String
+    subtitulo       String
+    descripcion     String   @db.Text
+    imagen          String
+    miniTitulo      String
+    miniDescripcion String
+    createdAt       DateTime @default(now())
+    updatedAt       DateTime @updatedAt
 
-  // Relaciones
-  serviciosAdicionales ServicioAdicional[]
-  trabajos             Trabajo[]
-  proyectos            Proyecto[]
+    // Relaciones
+    serviciosAdicionales ServicioAdicional[]
+    trabajos             Trabajo[]
+    proyectos            Proyecto[]
 
-  @@map("servicio_categoria")
+    @@map("servicio_categoria")
 }
 
 model ServicioAdicional {
-  id          String   @id @default(uuid())
-  titulo      String
-  subtitulo   String
-  imagen      String
-  categoriaId String
-  categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id          String            @id @default(uuid())
+    titulo      String
+    subtitulo   String
+    imagen      String
+    categoriaId String
+    categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @updatedAt
 
-  @@map("servicio_adicional")
+    @@map("servicio_adicional")
 }
 
 model Trabajo {
-  id          String   @id @default(uuid())
-  titulo      String
-  descripcion String   @db.Text
-  imagen      String
-  categoriaId String
-  categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id          String            @id @default(uuid())
+    titulo      String
+    descripcion String            @db.Text
+    imagen      String
+    categoriaId String
+    categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @updatedAt
 
-  @@map("trabajo")
+    @@map("trabajo")
 }
 
 model Proyecto {
-  id          String   @id @default(uuid())
-  titulo      String
-  imagen      String
-  categoriaId String
-  categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @default(now())
+    id          String            @id @default(uuid())
+    titulo      String
+    imagen      String
+    categoriaId String
+    categoria   ServicioCategoria @relation(fields: [categoriaId], references: [id])
+    createdAt   DateTime          @default(now())
+    updatedAt   DateTime          @default(now())
 
-  @@map("proyecto")
+    @@map("proyecto")
 }
 
 model BannerPrincipal {
-  id          String   @id @default(uuid())
-  titulo      String
-  descripcion String   @db.Text
-  imagen      String
-  enlace      String
-  textoBoton  String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id          String   @id @default(uuid())
+    titulo      String
+    descripcion String   @db.Text
+    imagen      String
+    enlace      String
+    textoBoton  String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 
-  @@map("banner_principal")
+    @@map("banner_principal")
 }
 
 model Feria {
-  id        String   @id @default(uuid())
-  imagen    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        String   @id @default(uuid())
+    imagen    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("feria")
+    @@map("feria")
 }
 
 model ServicioEditable {
-  id          String   @id @default(uuid())
-  titulo      String
-  descripcion String   @db.Text
-  componente1 String
-  componente2 String
-  componente3 String
-  componente4 String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id          String   @id @default(uuid())
+    titulo      String
+    descripcion String   @db.Text
+    componente1 String
+    componente2 String
+    componente3 String
+    componente4 String
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 
-  @@map("servicio_editable")
+    @@map("servicio_editable")
 }
 
 model SeccionContacto {
-  id          String   @id @default(uuid())
-  titulo      String
-  descripcion String   @db.Text
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+    id          String   @id @default(uuid())
+    titulo      String
+    descripcion String   @db.Text
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
 
-  @@map("seccion_contacto")
+    @@map("seccion_contacto")
 }
 
 model BannerSecundario {
-  id        String   @id @default(uuid())
-  imagen    String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+    id        String   @id @default(uuid())
+    imagen    String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
 
-  @@map("banner_secundario")
+    @@map("banner_secundario")
 }
 
 model Usuario {
-  id          String       @id @default(uuid())
-  nombre      String
-  email       String    @unique
-  contraseña  String
-  rol         Rol       @default(ADMIN)
-  createdAt   DateTime  @default(now())
+    id          String   @id @default(uuid())
+    nombre      String
+    email       String   @unique
+    contraseña String
+    rol         Rol      @default(ADMIN)
+    createdAt   DateTime @default(now())
 
-  @@map("usuario")
+    @@map("usuario")
 }
 
 model BannerFinal {
-  id          String      @id @default(uuid())
-  titulo      String
-  descripcion String   @db.Text
-  images      Json
-  @@map("banner_final")
+    id          String @id @default(uuid())
+    titulo      String
+    descripcion String @db.Text
+    images      Json
+
+    @@map("banner_final")
 }
 
 enum Rol {
-  ADMIN
-} 
+    ADMIN
+}
+
+model Configuracion {
+    id         Int      @id @default(autoincrement())
+    numeros    Json?
+    correos    Json?
+    direccion1 String   @db.Text
+    direccion2 String   @db.Text
+    direccion3 String   @db.Text
+    horario    String   @db.Text
+    facebook   String?  @db.Text
+    instagram  String?  @db.Text
+    twiter     String?  @db.Text
+    tiktok     String?  @db.Text
+    linkedin   String?  @db.Text
+    youtube    String?  @db.Text
+    whatsapp   String?  @db.Text
+    createdAt  DateTime @default(now()) @map("created_at")
+    updatedAt  DateTime @updatedAt @map("updated_at")
+
+    @@map("configuracions")
+}
+
+model Galeria {
+    id        Int      @id @default(autoincrement())
+    imagen1   String
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("galeria")
+}

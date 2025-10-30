@@ -18,6 +18,7 @@ const getFolderByRoute = (req: any): string => {
   if (originalUrl.includes("proyectos")) return "proyecto";
   if (originalUrl.includes("trabajo")) return "trabajo";
   if (originalUrl.includes("feria")) return "feria";
+  if (originalUrl.includes("galeria")) return "galeria";
   if (originalUrl.includes("bsecundarios")) return "banners-secundarios";
   if (originalUrl.includes("bprincipales")) return "banners-principales";
   if (originalUrl.includes("contacto")) return "contacto";

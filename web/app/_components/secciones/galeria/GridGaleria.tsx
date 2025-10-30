@@ -1,13 +1,10 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { GalleryImage, GalleryItem } from "../GaleriaSeccion";
-import { Global } from "@/utils/global";
+import { ConfigResponse } from "@/models/generalData";
+import { useConfig } from "../../../_context/ConfigContext";
 
 export const GridGaleria = () => {
-  const [images, setImages] = useState<GalleryImage[]>([]);
-  const [loading, setLoading] = useState(true);
-
   const pattern: Pick<GalleryImage, "span" | "animationType">[] = [
     {
       span: "col-span-2 row-span-2 sm:col-span-2 sm:row-span-3 md:col-span-2 md:row-span-4",
@@ -39,75 +36,25 @@ export const GridGaleria = () => {
     },
   ];
 
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const res = await fetch(`${Global.url}/allServicios`);
-        const data = await res.json();
+  const config = useConfig();
+  const { galeria } = (config as unknown as ConfigResponse).data;
 
-        const normalized: GalleryImage[] = data.map(
-          (item: any, index: number) => {
-            const patternItem = pattern[index % pattern.length];
-            return {
-              id: item.id,
-              url: item.imagen1,
-              nombre: item.nombre,
-              span: patternItem.span,
-              animationType: patternItem.animationType,
-            };
-          }
-        );
-
-        setImages(normalized);
-      } catch (error) {
-        console.error("Error al obtener imágenes:", error);
-      } finally {
-        setLoading(false);
-      }
+  const images: GalleryImage[] = galeria.map((item: any, index: number) => {
+    const patternItem = pattern[index % pattern.length];
+    return {
+      id: item.id,
+      url: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/galeria/${item.imagen}`,
+      nombre: item.nombre || item.titulo || '',
+      span: patternItem.span,
+      animationType: patternItem.animationType,
     };
-
-    fetchImages();
-  }, []);
-
-  // Skeleton de carga (brillo animado)
-  const Skeleton = () => (
-    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 auto-rows-[120px] sm:auto-rows-[150px] md:auto-rows-[180px] gap-2 sm:gap-4 md:gap-5 animate-pulse">
-      {[...Array(7)].map((_, i) => (
-        <div
-          key={i}
-          className={`${
-            pattern[i % pattern.length].span
-          } bg-gray-200 rounded-lg overflow-hidden relative`}
-        >
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent animate-[shimmer_1.5s_infinite]" />
-        </div>
-      ))}
-      <style>{`
-        @keyframes shimmer {
-          0% {
-            transform: translateX(-100%);
-          }
-          100% {
-            transform: translateX(100%);
-          }
-        }
-      `}</style>
-    </div>
-  );
+  });
 
   return (
-    <>
-      {loading ? (
-        <Skeleton />
-      ) : (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 auto-rows-[120px] sm:auto-rows-[150px] md:auto-rows-[180px] gap-2 sm:gap-4 md:gap-5">
-          {images
-            .reverse()
-            .map((image, index) => (
-              <GalleryItem key={image.id} image={image} index={index} />
-            ))}
-        </div>
-      )}
-    </>
+    <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 auto-rows-[120px] sm:auto-rows-[150px] md:auto-rows-[180px] gap-2 sm:gap-4 md:gap-5">
+      {images.reverse().map((image, index) => (
+        <GalleryItem key={image.id} image={image} index={index} />
+      ))}
+    </div>
   );
 };

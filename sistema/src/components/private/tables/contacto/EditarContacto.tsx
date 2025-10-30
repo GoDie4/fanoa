@@ -1,112 +1,113 @@
-import { useEffect, useState } from 'react'
-import useAuth from '../../../../hooks/useAuth'
-import axios from 'axios'
-import { Global } from '../../../../helper/Global'
-import Swal from 'sweetalert2'
-import { Loading } from '../../../shared/Loading'
-import { useFormik } from 'formik'
-import { SchemaConfiguracion } from '../../../shared/Schemas'
-import { InputsBriefs } from '../../../shared/InputsBriefs'
-import { Errors } from '../../../shared/Errors'
-import { TitleBriefs } from '../../../shared/TitleBriefs'
-import Numeros, { type NumerosItem } from './components/Numeros'
-import Correos, { type CorreosItem } from './components/Correos'
+import { useEffect, useState } from "react";
+import useAuth from "../../../../hooks/useAuth";
+import axios from "axios";
+import { Global } from "../../../../helper/Global";
+import Swal from "sweetalert2";
+import { Loading } from "../../../shared/Loading";
+import { useFormik } from "formik";
+import { SchemaConfiguracion } from "../../../shared/Schemas";
+import { InputsBriefs } from "../../../shared/InputsBriefs";
+import { Errors } from "../../../shared/Errors";
+import { TitleBriefs } from "../../../shared/TitleBriefs";
+import Numeros, { type NumerosItem } from "./components/Numeros";
+import Correos, { type CorreosItem } from "./components/Correos";
 
 export const EditarContacto = (): JSX.Element => {
-  const token = localStorage.getItem('token')
-  const { setTitle, loadingComponents, setLoadingComponents } = useAuth()
+  const token = localStorage.getItem("token");
+  const { setTitle, loadingComponents, setLoadingComponents } = useAuth();
 
   useEffect(() => {
-    setTitle('CONTACTO')
-    getBanner()
-  }, [])
+    setTitle("CONTACTO");
+    getBanner();
+  }, []);
   const [numeros, setNumeros] = useState<NumerosItem[]>([
     {
-      numero: '',
-      position: 1
-    }
-  ])
+      numero: "",
+      position: 1,
+    },
+  ]);
 
   const [correos, setCorreos] = useState<CorreosItem[]>([
     {
-      correo: '',
+      correo: "",
       position: 1,
-      descripcion: ''
-    }
-  ])
+      descripcion: "",
+    },
+  ]);
   const upadateBanner = async (): Promise<void> => {
     if (correos.length < 1 || numeros.length < 1) {
       Swal.fire(
-        'Correos o números al menos debe tener 1 registro',
-        '',
-        'error'
-      )
-      setLoadingComponents(false)
-      return
+        "Correos o números al menos debe tener 1 registro",
+        "",
+        "error"
+      );
+      setLoadingComponents(false);
+      return;
     }
 
-    if (correos[0].correo === '' || correos[0].correo === null) {
-      Swal.fire('El correo no puede estar vacío', '', 'error')
-      setLoadingComponents(false)
-      return
+    if (correos[0].correo === "" || correos[0].correo === null) {
+      Swal.fire("El correo no puede estar vacío", "", "error");
+      setLoadingComponents(false);
+      return;
     }
 
-    if (numeros[0].numero === '' || numeros[0].numero === null) {
-      Swal.fire('El número no puede estar vacío', '', 'error')
-      setLoadingComponents(false)
-      return
+    if (numeros[0].numero === "" || numeros[0].numero === null) {
+      Swal.fire("El número no puede estar vacío", "", "error");
+      setLoadingComponents(false);
+      return;
     }
-    setLoadingComponents(true)
-    const data = new FormData()
-    data.append('correos', JSON.stringify(correos))
-    data.append('numeros', JSON.stringify(numeros))
-    data.append('direccion1', values.direccion1)
-    data.append('direccion2', values.direccion2)
-    data.append('direccion3', values.direccion3)
-    data.append('horario', values.horario)
-    data.append('facebook', values.facebook)
-    data.append('instagram', values.instagram)
-    data.append('twiter', values.twiter)
-    data.append('linkedin', values.linkedin)
-    data.append('tiktok', values.tiktok)
-    data.append('youtube', values.youtube)
-    data.append('whatsapp', values.whatsapp)
-    data.append('_method', 'PUT')
+    setLoadingComponents(true);
+    const data = {
+      correos,
+      numeros,
+      direccion1: values.direccion1,
+      direccion2: values.direccion2,
+      direccion3: values.direccion3,
+      horario: values.horario,
+      facebook: values.facebook,
+      instagram: values.instagram,
+      twiter: values.twiter,
+      linkedin: values.linkedin,
+      tiktok: values.tiktok,
+      youtube: values.youtube,
+      whatsapp: values.whatsapp,
+    };
 
     try {
-      const respuesta = await axios.post(
-        `${Global.url}/updateConfiguracion/1`,
+      const respuesta = await axios.put(
+        `${Global.url}/configuracion/updateConfiguracion/1`,
         data,
         {
           headers: {
             Authorization: `Bearer ${
-              token !== null && token !== '' ? token : ''
-            }`
-          }
+              token !== null && token !== "" ? token : ""
+            }`,
+          },
         }
-      )
+      );
 
-      if (respuesta.data.status == 'success') {
-        Swal.fire('Actualizado correctamente', '', 'success')
+      if (respuesta.data.status == "success") {
+        Swal.fire("Actualizado correctamente", "", "success");
       } else {
-        Swal.fire('Error al realizar la edicion', '', 'error')
+        Swal.fire("Error al realizar la edicion", "", "error");
       }
     } catch (error) {
-      console.log(error)
-      Swal.fire('Error', '', 'error')
+      console.log(error);
+      Swal.fire("Error", "", "error");
     }
-    setLoadingComponents(false)
-  }
+    setLoadingComponents(false);
+  };
 
   const getBanner = async (): Promise<void> => {
-    setLoadingComponents(true)
-    const request = await axios.get(`${Global.url}/oneConfi/1`, {
+    setLoadingComponents(true);
+    const request = await axios.get(`${Global.url}/configuracion/oneConfi/1`, {
       headers: {
         Authorization: `Bearer ${
-          token !== null && token !== '' ? `Bearer ${token}` : ''
-        }`
-      }
-    })
+          token !== null && token !== "" ? `Bearer ${token}` : ""
+        }`,
+      },
+    });
+    console.log(request.data)
     setValues({
       ...values,
       direccion1: request.data.direccion1,
@@ -118,20 +119,20 @@ export const EditarContacto = (): JSX.Element => {
       twiter: request.data.twiter,
       linkedin: request.data.linkedin,
       youtube: request.data.youtube,
-      whatsapp: request.data.whatsapp
-    })
+      whatsapp: request.data.whatsapp,
+    });
     setCorreos(
-      (JSON.parse(request.data.correos || '[]') as CorreosItem[]).map(
-        (correo, i) => ({
-          correo: correo.correo || '',
-          descripcion: correo.descripcion || '',
-          position: i + 1
+      request.data.correos.map(
+        (correo: any, i: number) => ({
+          correo: correo.correo || "",
+          descripcion: correo.descripcion || "",
+          position: i + 1,
         })
       )
-    )
-    setNumeros(JSON.parse(request.data.numeros || '[]'))
-    setLoadingComponents(false)
-  }
+    );
+    setNumeros(request.data.numeros);
+    setLoadingComponents(false);
+  };
 
   const {
     handleSubmit,
@@ -140,32 +141,30 @@ export const EditarContacto = (): JSX.Element => {
     values,
     setValues,
     touched,
-    handleBlur
+    handleBlur,
   } = useFormik({
     initialValues: {
-      direccion1: '',
-      direccion2: '',
-      direccion3: '',
-      horario: '',
-      facebook: '',
-      instagram: '',
-      twiter: '',
-      linkedin: '',
-      youtube: '',
-      tiktok: '',
-      whatsapp: ''
+      direccion1: "",
+      direccion2: "",
+      direccion3: "",
+      horario: "",
+      facebook: "",
+      instagram: "",
+      twiter: "",
+      linkedin: "",
+      youtube: "",
+      tiktok: "",
+      whatsapp: "",
     },
     validationSchema: SchemaConfiguracion,
-    onSubmit: upadateBanner
-  })
+    onSubmit: upadateBanner,
+  });
 
   return (
     <>
-      {loadingComponents
-        ? (
+      {loadingComponents ? (
         <Loading />
-          )
-        : (
+      ) : (
         <form
           className="p-8 bg-secondary-100 rounded-xl"
           onSubmit={handleSubmit}
@@ -281,7 +280,7 @@ export const EditarContacto = (): JSX.Element => {
             />
           </div>
         </form>
-          )}
+      )}
     </>
-  )
-}
+  );
+};

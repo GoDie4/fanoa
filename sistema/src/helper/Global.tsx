@@ -4,6 +4,6 @@
 // }
 
 export const Global = {
-  url: 'http://127.0.0.1:8000/api',
-  urlImages: 'http://127.0.0.1:8000'
+  url: 'http://localhost:4000/api/v1',
+  urlImages: 'http://localhost:4000/api'
 }

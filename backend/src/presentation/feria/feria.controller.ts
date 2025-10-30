@@ -6,7 +6,7 @@ import path from "path";
 const uploadDir = path.resolve(__dirname, "../../../uploads/feria");
 
 export const feriaController = {
-  async getAll(req: Request, res: Response) {
+  async getAll(_req: Request, res: Response) {
     try {
       const ferias = await prisma.feria.findMany({
         orderBy: { createdAt: "asc" },

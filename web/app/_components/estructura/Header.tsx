@@ -1,19 +1,33 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useContacto } from "@/hooks/useContacto";
-import { Facebook, Instagram, Mail, MapPin, Menu, Phone, X, ChevronDown } from "lucide-react";
+import {
+  Facebook,
+  Instagram,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  X,
+  ChevronDown,
+} from "lucide-react";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+import { useConfig } from "../../_context/ConfigContext";
+import { ConfigResponse } from "@/models/generalData";
 
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isMobileServicesOpen, setIsMobileServicesOpen] = useState(false);
+  const config = useConfig();
+  const { configuracion } = (config as unknown as ConfigResponse).data;
+  //@ts-ignore
+  const contacto = configuracion?.[0];
 
-  const { contacto, loading } = useContacto();
-
-  // console.log(contacto);
+    console.log(contacto)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -58,12 +72,16 @@ export const Header = () => {
               {/* 📞 Teléfono */}
               {contacto ? (
                 <a
-                  href={`tel:${contacto?.numeros.find((n) => n.position === 1)?.numero ?? ""}`}
+                  href={`tel:${
+                    contacto?.numeros?.find((n: any) => n.position === 1)
+                      ?.numero ?? ""
+                  }`}
                   className="flex items-center gap-2 transition-colors text-white/90 hover:text-cyan-300 group"
                 >
                   <Phone className="w-4 h-4 transition-transform group-hover:scale-110" />
                   <span className="font-medium">
-                    {contacto?.numeros.find((n) => n.position === 1)?.numero ?? ""}
+                    {contacto?.numeros?.find((n: any) => n.position === 1)
+                      ?.numero ?? ""}
                   </span>
                 </a>
               ) : (
@@ -76,12 +94,16 @@ export const Header = () => {
               {/* 📧 Correo */}
               {contacto ? (
                 <a
-                  href={`mailto:${contacto?.correos.find((c) => c.position === 1)?.correo ?? ""}`}
+                  href={`mailto:${
+                    contacto?.correos?.find((c: any) => c.position === 1)
+                      ?.correo ?? ""
+                  }`}
                   className="flex items-center gap-2 transition-colors text-white/90 hover:text-cyan-300 group"
                 >
                   <Mail className="w-4 h-4 transition-transform group-hover:scale-110" />
                   <span className="hidden font-medium sm:inline">
-                    {contacto?.correos.find((c) => c.position === 1)?.correo ?? ""}
+                    {contacto?.correos?.find((c: any) => c.position === 1)?.correo ??
+                      ""}
                   </span>
                   <span className="font-medium sm:hidden">Email</span>
                 </a>
@@ -108,38 +130,30 @@ export const Header = () => {
 
             {/* Right Side - Social Media */}
             <div className="flex items-center gap-3">
-              <span className="hidden text-xs font-medium text-white/70 lg:inline">Síguenos:</span>
+              <span className="hidden text-xs font-medium text-white/70 lg:inline">
+                Síguenos:
+              </span>
               <div className="flex items-center gap-2">
-                {loading ? (
-                  // 💨 Skeletons de carga
-                  <>
-                    <div className="w-8 h-8 rounded-full bg-white/20 animate-pulse" />
-                    <div className="w-8 h-8 rounded-full bg-white/20 animate-pulse" />
-                  </>
-                ) : (
-                  <>
-                    {contacto?.facebook && (
-                      <a
-                        href={contacto.facebook}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-white/10 hover:bg-secondary group"
-                      >
-                        <Facebook className="w-4 h-4 text-white transition-transform group-hover:scale-110" />
-                      </a>
-                    )}
+                {contacto?.facebook && (
+                  <a
+                    href={contacto.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-white/10 hover:bg-secondary group"
+                  >
+                    <Facebook className="w-4 h-4 text-white transition-transform group-hover:scale-110" />
+                  </a>
+                )}
 
-                    {contacto?.instagram && (
-                      <a
-                        href={contacto.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-white/10 hover:bg-secondary group"
-                      >
-                        <Instagram className="w-4 h-4 text-white transition-transform group-hover:scale-110" />
-                      </a>
-                    )}
-                  </>
+                {contacto?.instagram && (
+                  <a
+                    href={contacto.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center w-8 h-8 transition-all duration-300 rounded-full bg-white/10 hover:bg-secondary group"
+                  >
+                    <Instagram className="w-4 h-4 text-white transition-transform group-hover:scale-110" />
+                  </a>
                 )}
               </div>
             </div>
@@ -147,7 +161,11 @@ export const Header = () => {
         </div>
       </div>
       {/* Desktop Header with Diagonal Design */}
-      <div className={`relative  bg-white ${isScrolled ? "" : ""} transition-all duration-300`}>
+      <div
+        className={`relative  bg-white ${
+          isScrolled ? "" : ""
+        } transition-all duration-300`}
+      >
         {/* Content */}
         <div className="container relative px-6 md:px-14 py-4 mx-auto">
           <div className="flex items-center justify-between">
@@ -235,9 +253,17 @@ export const Header = () => {
               }  rounded-lg backdrop-blur-sm hover:bg-white/20 transition-colors`}
             >
               {isMobileMenuOpen ? (
-                <X className={`w-6 h-6 ${isScrolled ? "text-primary" : "text-white"}`} />
+                <X
+                  className={`w-6 h-6 ${
+                    isScrolled ? "text-primary" : "text-white"
+                  }`}
+                />
               ) : (
-                <Menu className={`w-6 h-6 ${isScrolled ? "text-primary" : "text-white"}`} />
+                <Menu
+                  className={`w-6 h-6 ${
+                    isScrolled ? "text-primary" : "text-white"
+                  }`}
+                />
               )}
             </button>
           </div>
@@ -247,7 +273,9 @@ export const Header = () => {
       {/* Mobile Menu */}
       <div
         className={`lg:hidden bg-white border-t border-primary-300/30 transition-all duration-300 ease-in-out ${
-          isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+          isMobileMenuOpen
+            ? "max-h-screen opacity-100"
+            : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
         <nav className="px-6 py-4 mx-auto space-y-2 max-w-7xl">
@@ -256,7 +284,9 @@ export const Header = () => {
               {item.hasDropdown ? (
                 <div>
                   <button
-                    onClick={() => setIsMobileServicesOpen(!isMobileServicesOpen)}
+                    onClick={() =>
+                      setIsMobileServicesOpen(!isMobileServicesOpen)
+                    }
                     className="flex items-center justify-between w-full px-4 py-3 font-semibold text-gray-800 transition-all duration-300 border-l-4 border-transparent rounded-lg hover:bg-cyan-400/20 hover:border-cyan-400"
                   >
                     <span>{item.name}</span>
@@ -269,7 +299,9 @@ export const Header = () => {
                   {/* Mobile Submenu */}
                   <div
                     className={`ml-4 mt-1 space-y-1 overflow-hidden transition-all duration-300 ${
-                      isMobileServicesOpen ? "max-h-48 opacity-100" : "max-h-0 opacity-0"
+                      isMobileServicesOpen
+                        ? "max-h-48 opacity-100"
+                        : "max-h-0 opacity-0"
                     }`}
                   >
                     {serviciosSubmenu.map((subItem, subIndex) => (

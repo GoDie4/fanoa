@@ -108,11 +108,12 @@ async function getConfig() {
     const res = await fetch("http://localhost:4000/api/v1/general", {
       next: { revalidate: 0 },
     });
+    console.log({ res });
 
     if (!res.ok) throw new Error("Error al obtener configuración");
 
     const data = await res.json();
-    // console.log({ data });
+    console.log({ data });
     return data;
   } catch (error) {
     console.error("Error fetching config:", error);

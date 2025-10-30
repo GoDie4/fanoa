@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // 🧱 Banner principal o secundario
 export interface Banner {
   id: string;
@@ -85,6 +86,8 @@ export interface GeneralData {
   proyectos: Proyecto[];
   trabajos: Trabajo[];
   ferias: any[];
+  galeria: any[];
+  configuracion: Configuracion;
   contacto: Contacto[];
   usuarios: Usuario[];
 }
@@ -93,3 +96,34 @@ export interface GeneralData {
 export interface ConfigResponse {
   data: GeneralData;
 }
+
+
+interface Numero {
+    numero: string;
+    position: number;
+  }
+  
+  interface Correo {
+    correo: string;
+    descripcion: string;
+    position: number;
+  }
+  
+  interface Configuracion {
+    id: number;
+    numeros: Numero[];
+    correos: Correo[];
+    direccion1: string;
+    direccion2: string;
+    direccion3: string;
+    horario: string;
+    facebook?: string | null;
+    instagram?: string | null;
+    tiktok?: string | null;
+    twiter?: string | null;
+    linkedin?: string | null;
+    youtube?: string | null;
+    whatsapp?: string | null;
+    created_at?: string | null;
+    updated_at?: string | null;
+  }

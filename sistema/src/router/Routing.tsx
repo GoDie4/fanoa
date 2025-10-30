@@ -3,9 +3,6 @@ import { AuthProvider } from "../context/AuthProvider";
 import { Login } from "../components/public/Login";
 import { PrivateLayout } from "../components/private/PrivateLayout";
 import Home from "../components/private/tables/Home";
-import { ListaServicio } from "../components/private/tables/servicios/ListaServicio";
-import { CrearServicio } from "../components/private/tables/servicios/CrearServicio";
-import { EditarServicio } from "../components/private/tables/servicios/EditarServicio";
 // import { PrivateLayoutV2 } from "../components/private/PrivateLayoutV2";
 
 import { ListaServicioCategoria } from "../components/private/tables/servicios-categoria/ListaServicioCategoria";
@@ -14,7 +11,6 @@ import { EditarServicioCategoria } from "../components/private/tables/servicios-
 
 import { ListaProyectos } from "../components/private/tables/admin/proyectos/ListaProyectos";
 
-import { CrearCliente } from "../components/private/tables/clientes/CrearCliente";
 import { CrearProyecto } from "../components/private/tables/admin/proyectos/CrearProyecto";
 import { EditarProyecto } from "../components/private/tables/admin/proyectos/EditarProyecto";
 
@@ -36,6 +32,10 @@ import { EditarMarcas } from "../components/private/tables/admin/marcas/EditarMa
 import { ListaBannerSecundario } from "../components/private/tables/admin/banner-secundario/ListaBannerSecundatio";
 import { CrearBannerSecundario } from "../components/private/tables/admin/banner-secundario/CrearBannerSecundario";
 import { EditarBannerSecundario } from "../components/private/tables/admin/banner-secundario/EditarBannerSecundario";
+import { EditarContacto } from "../components/private/tables/contacto/EditarContacto";
+import { ListaGaleria } from "../components/private/tables/admin/galeria/ListarGaleria";
+import { CrearGaleria } from "../components/private/tables/admin/galeria/CrearGaleria";
+import { EditarGaleria } from "../components/private/tables/admin/galeria/EditarGaleria";
 
 export const Routing = (): JSX.Element => {
   return (
@@ -49,9 +49,9 @@ export const Routing = (): JSX.Element => {
             <Route index element={<Home />} />
 
             {/* NOTICIAS */}
-            <Route path="galeria" element={<ListaServicio />} />
-            <Route path="galeria/agregar" element={<CrearServicio />} />
-            <Route path="galeria/editar/:id" element={<EditarServicio />} />
+            <Route path="galeria" element={<ListaGaleria />} />
+            <Route path="galeria/agregar" element={<CrearGaleria />} />
+            <Route path="galeria/editar/:id" element={<EditarGaleria />} />
 
             <Route path="banner-principal" element={<ListaBannersPrincipal />} />
             <Route path="banner-principal/agregar" element={<CrearBannerPrincipal />} />
@@ -87,7 +87,7 @@ export const Routing = (): JSX.Element => {
             <Route path="banner-secundario/editar/:id" element={<EditarBannerSecundario />} />
 
             {/* CONFIGURACION */}
-            <Route path="contacto/:id" element={<CrearCliente />} />
+            <Route path="contacto/:id" element={<EditarContacto />} />
           </Route>
           <Route path="*" element={<>Error 404</>} />
         </Routes>

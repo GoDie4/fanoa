@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import React, { useMemo } from "react";
@@ -13,8 +15,9 @@ import {
 import Link from "next/link";
 import { redirigirWhatsApp } from "@/utils/redirectToWhatsapp";
 
-import { useContacto } from "@/hooks/useContacto";
 import { FloatingWhatsApp } from "react-floating-whatsapp";
+import { useConfig } from "../../_context/ConfigContext";
+import { ConfigResponse } from "@/models/generalData";
 
 interface FooterLink {
   title: string;
@@ -54,7 +57,10 @@ const footerSections: FooterSection[] = [
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
-  const { contacto, loading } = useContacto();
+  const config = useConfig();
+  const { configuracion } = (config as unknown as ConfigResponse).data;
+  //@ts-ignore
+  const contacto = configuracion?.[0];
 
   // Procesar datos de contacto - Ya vienen parseados del hook
   const contactData = useMemo(() => {
@@ -62,10 +68,10 @@ const Footer: React.FC = () => {
 
     return {
       numeros: contacto.numeros
-        .sort((a, b) => a.position - b.position)
+        .sort((a: any, b: any) => a.position - b.position)
         .slice(0, 3),
       correos: contacto.correos
-        .sort((a, b) => a.position - b.position)
+        .sort((a: any, b: any) => a.position - b.position)
         .slice(0, 3),
       direccion: contacto.direccion1,
       whatsapp: contacto.whatsapp,
@@ -141,10 +147,9 @@ const Footer: React.FC = () => {
                     "Hola estoy interesado en sus servicios"
                   )
                 }
-                disabled={loading}
                 className="inline-block w-full px-6 py-3 font-bold text-center transition-all duration-300 bg-white rounded-lg cursor-pointer text-primary hover:bg-primary hover:text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {loading ? "Cargando..." : "Solicitar Cotización"}
+                {"Solicitar Cotización"}
               </button>
             </div>
           </motion.div>
@@ -195,15 +200,14 @@ const Footer: React.FC = () => {
                 Contacto
               </h4>
 
-              {loading ? (
-                <div className="flex items-center justify-center py-8">
-                  <Loader2 className="w-8 h-8 text-secondary animate-spin" />
-                </div>
-              ) : contactData ? (
+              <div className="flex items-center justify-center py-8">
+                <Loader2 className="w-8 h-8 text-secondary animate-spin" />
+              </div>
+              {contactData && (
                 <div className="space-y-3">
                   {/* Correos */}
                   {contactData.correos.length > 0 &&
-                    contactData.correos.map((item, index) => (
+                    contactData.correos.map((item: any, index: any) => (
                       <a
                         key={`correo-${index}`}
                         href={`mailto:${item.correo}`}
@@ -225,7 +229,7 @@ const Footer: React.FC = () => {
 
                   {/* Teléfonos */}
                   {contactData.numeros.length > 0 &&
-                    contactData.numeros.map((item, index) => (
+                    contactData.numeros.map((item: any, index: any) => (
                       <a
                         key={`tel-${index}`}
                         href={`tel:${item.numero.replace(/\s/g, "")}`}
@@ -262,10 +266,6 @@ const Footer: React.FC = () => {
                     </div>
                   )}
                 </div>
-              ) : (
-                <p className="text-sm text-gray-400">
-                  No hay datos de contacto disponibles
-                </p>
               )}
             </div>
 
@@ -274,13 +274,8 @@ const Footer: React.FC = () => {
               <p className="mb-3 text-sm font-semibold text-white">
                 Síguenos en redes
               </p>
-              {loading ? (
-                <div className="flex items-center gap-2">
-                  <Loader2 className="w-5 h-5 text-secondary animate-spin" />
-                  <span className="text-sm text-gray-400">Cargando...</span>
-                </div>
-              ) : contactData?.socialLinks &&
-                contactData.socialLinks.length > 0 ? (
+              {contactData?.socialLinks &&
+              contactData.socialLinks.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                   {contactData.socialLinks.map((social, index) => (
                     <motion.a

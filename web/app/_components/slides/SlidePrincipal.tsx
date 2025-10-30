@@ -307,7 +307,7 @@ export default function StandShowcaseSlider() {
                   exit="exit"
                 >
                   <Link
-                    href={standsData[currentIndex]?.enlace}
+                    href={standsData[currentIndex]?.enlace ?? '#'}
                     className="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white text-lg rounded-full transition-all duration-300 group"
                   >
                     {standsData[currentIndex]?.textoBoton}
