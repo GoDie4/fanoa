@@ -8,6 +8,8 @@ import { TopControls } from "../shared/TopControls";
 import { getAllProjectsByCategoryIdAction } from "./actions/getAllProjectsByCategoryId.action";
 import type { ProyectoResponse } from "./interfaces/project.response";
 import useAuth from "../../../../../hooks/useAuth";
+import Swal from "sweetalert2";
+import { deleteProject } from "./actions/deleteProjectByCategoryId.action";
 
 export const ListaProyectos = (): JSX.Element => {
   const [totalRegistros, setTotalRegistros] = useState(0);
@@ -46,14 +48,30 @@ export const ListaProyectos = (): JSX.Element => {
     fetchProyectos(categoriaSeleccionada);
   }, [categoriaSeleccionada]);
 
-  // const handleDelete = (id: string) => {
-  //   const confirmar = window.confirm("¿Seguro que deseas eliminar este proyecto?");
-  //   if (!confirmar) return;
+  const handleDelete = async (id: string) => {
+    const result = await Swal.fire({
+      title: "¿Estás seguro?",
+      text: "No podrás revertir esto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar",
+    });
 
-  //   setProyectos((prev) => prev.filter((item) => item.id !== id));
-  //   setTotalRegistros((prev) => prev - 1);
-  //   alert("Proyecto eliminado correctamente ✅");
-  // };
+    if (result.isConfirmed) {
+      try {
+        await deleteProject(id);
+        setProyectos((prev) => prev.filter((item) => item.id !== id));
+        setTotalRegistros((prev) => prev - 1);
+        Swal.fire("Eliminado", "El servicio adicional ha sido eliminado.", "success");
+      } catch (error) {
+        // console.error("Error eliminando servicio adicional:", error);
+        Swal.fire("Error", "No se pudo eliminar el servicio adicional.", "error");
+      }
+    }
+  };
 
   return (
     <>
@@ -98,14 +116,14 @@ export const ListaProyectos = (): JSX.Element => {
                             Editar
                           </Link>
                         </MenuItem>
-                        {/* <MenuItem className="p-0 hover:bg-transparent">
-                        <button
-                          onClick={() => handleDelete(pro.id)}
-                          className="flex items-center flex-1 p-2 text-gray-300 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4 w-full text-left"
-                        >
-                          Eliminar
-                        </button>
-                      </MenuItem> */}
+                        <MenuItem className="p-0 hover:bg-transparent">
+                          <button
+                            onClick={() => handleDelete(pro.id)}
+                            className="flex items-center flex-1 p-2 text-red-500 transition-colors rounded-lg hover:bg-secondary-900 gap-x-4 w-full text-left"
+                          >
+                            Eliminar
+                          </button>
+                        </MenuItem>
                       </Menu>
                     </div>
                   )}
