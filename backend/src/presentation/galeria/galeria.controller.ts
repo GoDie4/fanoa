@@ -24,8 +24,7 @@ export const galeriaController = {
   // Crear una nueva imagen en la galería
   async create(req: Request, res: Response) {
     try {
-      if (!req.file)
-        return res.status(400).json({ message: "La imagen es obligatoria" });
+      if (!req.file) return res.status(400).json({ message: "La imagen es obligatoria" });
 
       const nuevaGaleria = await prisma.galeria.create({
         data: { imagen1: req.file.filename },
@@ -44,8 +43,7 @@ export const galeriaController = {
       const id = Number(req.params.id);
       const galeria = await prisma.galeria.findUnique({ where: { id } });
 
-      if (!galeria)
-        return res.status(404).json({ message: "Imagen no encontrada" });
+      if (!galeria) return res.status(404).json({ message: "Imagen no encontrada" });
 
       res.json(galeria);
     } catch (error) {
@@ -60,8 +58,7 @@ export const galeriaController = {
       const id = Number(req.params.id);
       const existente = await prisma.galeria.findUnique({ where: { id } });
 
-      if (!existente)
-        return res.status(404).json({ message: "Imagen no encontrada" });
+      if (!existente) return res.status(404).json({ message: "Imagen no encontrada" });
 
       let imagen1 = existente.imagen1;
       if (req.file) {
@@ -88,8 +85,7 @@ export const galeriaController = {
       const id = Number(req.params.id);
       const existente = await prisma.galeria.findUnique({ where: { id } });
 
-      if (!existente)
-        return res.status(404).json({ message: "Imagen no encontrada" });
+      if (!existente) return res.status(404).json({ message: "Imagen no encontrada" });
 
       const filePath = path.join(uploadDir, existente.imagen1);
       if (fs.existsSync(filePath)) fs.unlinkSync(filePath);

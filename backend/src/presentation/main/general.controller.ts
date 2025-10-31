@@ -18,7 +18,7 @@ export const generalController = {
         seccionesContacto,
         usuariosSafe,
         galeria,
-        configuracion
+        configuracion,
       ] = await Promise.all([
         prisma.bannerPrincipal.findMany({ orderBy: { createdAt: "asc" } }),
         prisma.bannerSecundario.findMany({ orderBy: { createdAt: "asc" } }),
@@ -60,10 +60,10 @@ export const generalController = {
         contacto: seccionesContacto,
         usuarios: usuariosSafe,
         galeria,
-        configuracion
+        configuracion,
       };
 
-      console.log(JSON.stringify(data, null, 2));
+      // console.log(JSON.stringify(data, null, 2));
       return res.json({ data });
     } catch (error) {
       console.error("Error al obtener datos generales:", error);

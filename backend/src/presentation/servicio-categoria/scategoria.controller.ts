@@ -16,7 +16,7 @@ export const servicioCategoriaController = {
 
       return res.status(200).json(allServiciosCategorias);
     } catch (error) {
-      console.error("Error al obtener categorías:", error);
+      // console.error("Error al obtener categorías:", error);
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
@@ -37,7 +37,7 @@ export const servicioCategoriaController = {
 
       return res.status(200).json(servicioCategoria);
     } catch (error) {
-      console.error("Error al obtener la categoría:", error);
+      // console.error("Error al obtener la categoría:", error);
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
@@ -60,7 +60,7 @@ export const servicioCategoriaController = {
 
       return res.status(201).json(nuevaCategoria);
     } catch (error) {
-      console.error("Error al crear categoría:", error);
+      // console.error("Error al crear categoría:", error);
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
@@ -99,7 +99,7 @@ export const servicioCategoriaController = {
 
       return res.status(200).json(actualizado);
     } catch (error) {
-      console.error("Error al actualizar categoría:", error);
+      // console.error("Error al actualizar categoría:", error);
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },
@@ -123,7 +123,7 @@ export const servicioCategoriaController = {
 
       return res.status(200).json({ message: "Categoría eliminada correctamente" });
     } catch (error) {
-      console.error("Error al eliminar categoría:", error);
+      // console.error("Error al eliminar categoría:", error);
       return res.status(500).json({ error: "Error interno del servidor" });
     }
   },

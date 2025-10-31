@@ -4,8 +4,6 @@
 // }
 
 export const Global = {
-  url: 'https://api2.grupofanoa.com/api/v1',
-  urlImages: 'https://api2.grupofanoa.com'
-}
-
-
+  url: "https://api2.grupofanoa.com/api/v1",
+  urlImages: "https://api2.grupofanoa.com",
+};

@@ -7,6 +7,7 @@ export const servicioCategoriaRoute = () => {
 
   router.get("/", servicioCategoriaController.getAllServiciosCategoria);
   router.get("/:id", servicioCategoriaController.getOneServiciosCategoria);
+
   router.post(
     "/",
     upload.single("imagen"),
@@ -17,7 +18,9 @@ export const servicioCategoriaRoute = () => {
     upload.single("imagen"),
     servicioCategoriaController.updateServicioCategoria
   );
-  router.delete("/:id", servicioCategoriaController.deleteServicioCategoria);
+
+  router.post("/:id", servicioCategoriaController.deleteServicioCategoria);
+
 
   return router;
 };

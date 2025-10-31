@@ -7,7 +7,7 @@ import { PrismaClient } from "@prisma/client";
 export const prisma = new PrismaClient();
 
 export const bFinalController = {
-  async getAll(res: Response) {
+  async getAll(_req: Request, res: Response) {
     try {
       const banners = await prisma.bannerFinal.findMany({
         orderBy: { id: "asc" },

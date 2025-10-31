@@ -8,8 +8,11 @@ export const galeriaRoute = () => {
   router.get("/", galeriaController.getAll);
   router.get("/:id", galeriaController.getOne);
   router.post("/", upload.single("imagen1"), galeriaController.create);
+
   router.post("/:id", upload.single("imagen1"), galeriaController.update);
-  router.delete("/:id", galeriaController.delete);
+
+  router.post("/:id", galeriaController.delete);
+
 
   return router;
 };
