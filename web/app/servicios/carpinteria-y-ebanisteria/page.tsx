@@ -1,10 +1,52 @@
-/* eslint-disable @next/next/no-img-element */
 import { Mail, Phone } from "lucide-react";
 import { DetailsServicioGallery } from "../_components/DetailsServicioGallery";
 import Link from "next/link";
 import { ServiceHero } from "./_components/ServiceHero";
 import { AdditionalService } from "./_components/AdditionalService";
 import { ServiceProcess } from "./_components/ServiceProcess";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Carpintería y Ebanistería | Grupo Fanoa - Muebles a Medida en Madrid",
+  description:
+    "Especialistas en carpintería y ebanistería a medida en Madrid. Fabricamos muebles, puertas, escaleras y proyectos en madera personalizados de alta calidad.",
+  keywords: [
+    "carpintería de madera personalizada",
+    "carpintería de madera en Madrid",
+    "carpintería muebles a medida",
+    "fabricación de muebles en Madrid",
+    "talleres de carpintería de madera",
+  ],
+  openGraph: {
+    title:
+      "Carpintería y Ebanistería | Grupo Fanoa - Proyectos en Madera a Medida",
+    description:
+      "Diseño y fabricación artesanal en madera. Grupo Fanoa crea muebles, estructuras y acabados con precisión y estilo profesional.",
+    url: "https://grupofanoa.com/servicios/carpinteria-y-ebanisteria",
+    siteName: "Grupo Fanoa",
+    locale: "es_PE",
+    type: "website",
+    images: [
+      {
+        url: "https://www.grupofanoa.com/assets/images/servicios/servicio2.webp",
+        width: 1200,
+        height: 630,
+        alt: "Carpintería y ebanistería a medida en Madrid por Grupo Fanoa",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Carpintería y Ebanistería | Grupo Fanoa - Proyectos Personalizados",
+    description:
+      "Carpintería y ebanistería de alta calidad en Madrid. Grupo Fanoa fabrica muebles, escaleras y puertas a medida con acabados profesionales.",
+    images: [
+      "https://www.grupofanoa.com/assets/images/servicios/servicio2.webp",
+    ],
+  },
+  alternates: {
+    canonical: "https://grupofanoa.com/servicios/carpinteria-y-ebanisteria",
+  },
+};
 
 interface Feature {
   title: string;
@@ -232,7 +274,8 @@ const ServiceDetailView: React.FC = () => {
           </h2>
 
           <p className="text-xl text-gray-800 max-w-2xl mx-auto">
-            Cuéntanos tu visión y te enviaremos una propuesta personalizada en menos de 24 horas.
+            Cuéntanos tu visión y te enviaremos una propuesta personalizada en
+            menos de 24 horas.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">

@@ -1,4 +1,4 @@
-/* eslint-disable @next/next/no-img-element */
+ 
 
 import { Mail, Phone } from "lucide-react";
 import { DetailsServicioGallery } from "../_components/DetailsServicioGallery";
@@ -6,7 +6,49 @@ import Link from "next/link";
 import { ServiceHero } from "./_components/ServiceHero";
 import { AdditionalService } from "./_components/AdditionalService";
 import { ServiceProcess } from "./_components/ServiceProcess";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+    title: "Fabricación de Stands | Grupo Fanoa - Diseño y Montaje Profesional",
+    description:
+      "Fabricamos stands de diseño personalizados para ferias y eventos. En Grupo Fanoa ofrecemos soluciones llave en mano con montaje nacional e internacional.",
+    keywords: [
+      "fabricación de stands de diseño",
+      "diseño y montaje de stands para ferias",
+      "stands llave en mano",
+      "empresa de stands en Madrid",
+      "montaje de stands nacionales e internacionales",
+    ],
+    openGraph: {
+      title: "Fabricación de Stands | Grupo Fanoa - Stands de Diseño en Madrid",
+      description:
+        "Diseñamos y fabricamos stands feriales personalizados. Grupo Fanoa ofrece servicio integral: diseño, producción y montaje de stands llave en mano.",
+      url: "https://grupofanoa.com/servicios/fabricacion-de-stands",
+      siteName: "Grupo Fanoa",
+      locale: "es_PE",
+      type: "website",
+      images: [
+        {
+          url: "https://www.grupofanoa.com/assets/images/servicios/servicio1.webp",
+          width: 1200,
+          height: 630,
+          alt: "Fabricación de stands de diseño y montaje ferial en Madrid",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Fabricación de Stands | Grupo Fanoa - Diseño y Montaje Llave en Mano",
+      description:
+        "Expertos en fabricación y montaje de stands para ferias. Grupo Fanoa ofrece soluciones creativas, personalizadas y de alta calidad.",
+      images: [
+        "https://www.grupofanoa.com/assets/images/servicios/servicio1.webp",
+      ],
+    },
+    alternates: {
+      canonical: "https://grupofanoa.com/servicios/fabricacion-de-stands",
+    },
+  };
+  
 // Datos de ejemplo - puedes cambiarlos por los reales
 // const serviceData: ServiceData = {
 //   id: 1,
