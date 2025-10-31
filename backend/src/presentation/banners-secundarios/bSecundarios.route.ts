@@ -9,7 +9,7 @@ export const bSecundariosRoute = () => {
   router.get("/:id", bSecundariosController.getOne);
   router.post("/", upload.single("imagen"), bSecundariosController.create);
   router.put("/:id", upload.single("imagen"), bSecundariosController.update);
-  router.delete("/:id", bSecundariosController.delete);
+  router.post("/:id", bSecundariosController.delete);
 
   return router;
 };

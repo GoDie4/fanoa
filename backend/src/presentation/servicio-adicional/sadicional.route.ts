@@ -9,7 +9,7 @@ export const servicioAdicionalRoute = () => {
   router.get("/:id", servicioAdicionalController.getOneServicioAdicional);
   router.post("/", upload.single("imagen"), servicioAdicionalController.createServicioAdicional);
   router.put("/:id", upload.single("imagen"), servicioAdicionalController.updateServicioAdicional);
-  router.delete("/:id", servicioAdicionalController.deleteServicioAdicional);
+  router.post("/:id", servicioAdicionalController.deleteServicioAdicional);
 
   return router;
 };

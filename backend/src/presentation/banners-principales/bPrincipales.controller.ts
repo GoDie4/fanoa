@@ -6,15 +6,16 @@ import path from "path";
 const uploadDir = path.resolve(__dirname, "../../../uploads/banners-principales");
 
 export const bPrincipalesController = {
-  async getAll(res: Response) {
+  async getAll(req: Request, res: Response) {
     try {
       const banners = await prisma.bannerPrincipal.findMany({
         orderBy: { createdAt: "asc" },
       });
-      res.json(banners);
+      console.log(banners);
+      return res.status(200).json(banners);
     } catch (error) {
-      console.error("Error al obtener banners principales:", error);
-      res.status(500).json({ message: "Error al obtener banners" });
+      // console.error("Error al obtener banners principales:", error);
+      return res.status(500).json({ message: "Error al obtener banners" });
     }
   },
 

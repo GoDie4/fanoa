@@ -9,7 +9,7 @@ export const trabajosRoute = () => {
   router.get("/:id", trabajosController.getOneTrabajo);
   router.post("/", upload.single("imagen"), trabajosController.createTrabajo);
   router.put("/:id", upload.single("imagen"), trabajosController.updateTrabajo);
-  router.delete("/:id", trabajosController.deleteTrabajo);
+  router.post("/:id", trabajosController.deleteTrabajo);
 
   return router;
 };
