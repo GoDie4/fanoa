@@ -8,7 +8,7 @@ export const galeriaRoute = () => {
   router.get("/", galeriaController.getAll);
   router.get("/:id", galeriaController.getOne);
   router.post("/", upload.single("imagen1"), galeriaController.create);
-  router.put("/:id", upload.single("imagen1"), galeriaController.update);
+  router.post("/:id", upload.single("imagen1"), galeriaController.update);
   router.delete("/:id", galeriaController.delete);
 
   return router;

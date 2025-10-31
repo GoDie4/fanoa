@@ -12,6 +12,7 @@ export interface BannerPrincipalResponse {
 }
 
 export const updateMainBannersAction = async (id: string, formData: FormData) => {
-  const response = await adminApi.put<BannerPrincipalResponse>(`/bprincipales/${id}`, formData);
+    formData.append("_method", "PUT");
+  const response = await adminApi.post<BannerPrincipalResponse>(`/bprincipales/${id}`, formData);
   return response.data;
 };

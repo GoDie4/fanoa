@@ -1,4 +1,5 @@
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
 
 import { Request, Response } from "express";
 

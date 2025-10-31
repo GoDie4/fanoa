@@ -1,7 +1,9 @@
 import { Request, Response } from "express";
 import { Jwt } from "../../config/jwt";
 import { Bcrypt } from "../../config/bcryp";
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 
 export const authController = {
   register: async (req: Request, res: Response) => {

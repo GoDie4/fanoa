@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 import fs from "fs";
 import path from "path";
 
@@ -7,7 +9,7 @@ const uploadDir = path.resolve(__dirname, "../../../uploads/galeria");
 
 export const galeriaController = {
   // Obtener todas las imágenes de la galería
-  async getAll(res: Response) {
+  async getAll(_req: Request, res: Response) {
     try {
       const galerias = await prisma.galeria.findMany({
         orderBy: { createdAt: "asc" },

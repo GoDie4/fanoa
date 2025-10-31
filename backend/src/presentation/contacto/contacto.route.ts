@@ -7,7 +7,7 @@ export const contactoRoute = () => {
   router.get("/", contactoController.getAll);
   router.get("/:id", contactoController.getOne);
   router.post("/", contactoController.create);
-  router.put("/:id", contactoController.update);
+  router.post("/:id", contactoController.update);
   router.delete("/:id", contactoController.delete);
 
   return router;

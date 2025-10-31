@@ -7,7 +7,7 @@ export const servicioEditableRoute = () => {
   router.get("/", servicioEditableController.getAll);
   router.get("/:id", servicioEditableController.getOne);
   router.post("/", servicioEditableController.create);
-  router.put("/:id", servicioEditableController.update);
+  router.post("/:id", servicioEditableController.update);
   router.delete("/:id", servicioEditableController.delete);
 
   return router;

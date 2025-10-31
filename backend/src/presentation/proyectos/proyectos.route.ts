@@ -8,7 +8,7 @@ export const proyectosRoute = () => {
   router.get("/", proyectosController.getAll);
   router.get("/:id", proyectosController.getById);
   router.post("/", upload.single("imagen"), proyectosController.create);
-  router.put("/:id", upload.single("imagen"), proyectosController.update);
+  router.post("/:id", upload.single("imagen"), proyectosController.update);
   router.delete("/:id", proyectosController.delete);
 
   return router;

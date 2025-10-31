@@ -12,7 +12,7 @@ export const servicioCategoriaRoute = () => {
     upload.single("imagen"),
     servicioCategoriaController.createServicioCategoria
   );
-  router.put(
+  router.post(
     "/:id",
     upload.single("imagen"),
     servicioCategoriaController.updateServicioCategoria

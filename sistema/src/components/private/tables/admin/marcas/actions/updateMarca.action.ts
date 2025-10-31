@@ -8,6 +8,7 @@ export interface MarcaResponse {
 }
 
 export const updateMarcaAction = async (id: string, formData: FormData) => {
-  const response = await adminApi.put<MarcaResponse>(`/feria/${id}`, formData);
+  formData.append("_method", "PUT");
+  const response = await adminApi.post<MarcaResponse>(`/feria/${id}`, formData);
   return response.data;
 };

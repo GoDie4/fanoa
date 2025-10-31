@@ -8,7 +8,7 @@ export const bFinalRoute = () => {
   router.get("/", bFinalController.getAll);
   router.get("/:id", bFinalController.getById);
   router.post("/", upload.array("images", 5), bFinalController.create);
-  router.put("/:id", upload.array("images", 5), bFinalController.update);
+  router.post("/:id", upload.array("images", 5), bFinalController.update);
   router.delete("/:id", bFinalController.delete);
 
   return router;

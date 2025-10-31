@@ -1,12 +1,13 @@
 import { Request, Response } from "express";
-import { prisma } from "../../data";
 import fs from "fs";
 import path from "path";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
 
 const uploadDir = path.resolve(__dirname, "../../../uploads/banners-principales");
 
 export const bPrincipalesController = {
-  async getAll(res: Response) {
+  async getAll(_req: Request,res: Response) {
     try {
       const banners = await prisma.bannerPrincipal.findMany({
         orderBy: { createdAt: "asc" },

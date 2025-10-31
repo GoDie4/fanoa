@@ -8,6 +8,10 @@ export interface GaleriaResponse {
 }
 
 export const updateGaleriaAction = async (id: string, formData: FormData) => {
-  const response = await adminApi.put<GaleriaResponse>(`/galeria/${id}`, formData);
+  formData.append("_method", "PUT");
+  const response = await adminApi.post<GaleriaResponse>(
+    `/galeria/${id}`,
+    formData
+  );
   return response.data;
 };
