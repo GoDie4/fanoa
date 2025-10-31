@@ -7,7 +7,7 @@ const uploadDir = path.resolve(__dirname, "../../../uploads/galeria");
 
 export const galeriaController = {
   // Obtener todas las imágenes de la galería
-  async getAll(req: Request, res: Response) {
+  async getAll(_req: Request, res: Response) {
     try {
       const galerias = await prisma.galeria.findMany({
         orderBy: { createdAt: "asc" },
