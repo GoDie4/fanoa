@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 
 export const generalController = {
   async getAll(_req: Request, res: Response) {

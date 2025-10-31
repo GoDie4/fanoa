@@ -8,8 +8,11 @@ export const bSecundariosRoute = () => {
   router.get("/", bSecundariosController.getAll);
   router.get("/:id", bSecundariosController.getOne);
   router.post("/", upload.single("imagen"), bSecundariosController.create);
-  router.put("/:id", upload.single("imagen"), bSecundariosController.update);
+
+  router.post("/:id", upload.single("imagen"), bSecundariosController.update);
+
   router.post("/:id", bSecundariosController.delete);
+
 
   return router;
 };

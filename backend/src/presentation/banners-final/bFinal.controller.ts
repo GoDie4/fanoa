@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { prisma } from "../../data";
 import fs from "fs";
 import path from "path";
 
 const uploadDir = path.resolve(__dirname, "../../../uploads/banners-final");
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
 
 export const bFinalController = {
   async getAll(_req: Request, res: Response) {

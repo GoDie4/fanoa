@@ -7,7 +7,7 @@ export const configuracionRoute = () => {
   router.get("/oneConfi/:id", (req, res) =>
     ConfiguracionController.getConfiguracion(req, res)
   );
-  router.put("/updateConfiguracion/:id", (req, res) =>
+  router.post("/updateConfiguracion/:id", (req, res) =>
     ConfiguracionController.updateConfiguracion(req, res)
   );
   return router;
