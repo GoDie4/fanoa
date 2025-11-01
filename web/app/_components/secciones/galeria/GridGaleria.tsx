@@ -37,13 +37,13 @@ export const GridGaleria = () => {
   ];
 
   const config = useConfig();
-  const { galeria } = (config as unknown as ConfigResponse).data;
+  const { proyectos } = (config as unknown as ConfigResponse).data;
 
-  const images: GalleryImage[] = galeria.map((item: any, index: number) => {
+  const images: GalleryImage[] = proyectos.map((item: any, index: number) => {
     const patternItem = pattern[index % pattern.length];
     return {
       id: item.id,
-      url: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/galeria/${item.imagen1}`,
+      url: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/proyecto/${item.imagen}`,
       nombre: item.nombre || item.titulo || '',
       span: patternItem.span,
       animationType: patternItem.animationType,
