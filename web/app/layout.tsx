@@ -19,61 +19,70 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Grupo Fanoa | Fabricación de Stands Feriales y Carpintería Personalizada",
+    default: "Grupo Fanoa | Fabricación y Diseño de Stands en Madrid",
     template: "%s | Grupo Fanoa",
   },
   description:
-    "En Grupo Fanoa transformamos ideas en realidades. Somos especialistas en stands feriales, carpintería y ebanistería de alta calidad, ofreciendo proyectos personalizados en madera con acabados profesionales.",
+    "Grupo Fanoa, especialistas en fabricación, diseño y montaje de stands feriales en Madrid. Proyectos llave en mano con carpintería y acabados profesionales.",
   keywords: [
-    "stands feriales",
-    "carpintería a medida",
-    "ebanistería",
-    "diseño de stands",
-    "fabricación de stands",
-    "muebles de madera personalizados",
+    "fabricación de stands en Madrid",
+    "diseño de stands para ferias",
+    "montaje de stands feriales",
+    "stands llave en mano",
+    "empresa de stands en Madrid",
+    "carpintería personalizada",
     "Grupo Fanoa",
   ],
   authors: [{ name: "Grupo Fanoa" }],
   creator: "Grupo Fanoa",
   publisher: "Grupo Fanoa",
-  metadataBase: new URL("https://grupofanoa.com"), // cambia si tu dominio es distinto
+  metadataBase: new URL("https://grupofanoa.com"),
+
   openGraph: {
-    title: "Grupo Fanoa | Expertos en Stands Feriales y Carpintería de Alta Calidad",
+    title: "Grupo Fanoa | Expertos en Stands Feriales en Madrid",
     description:
-      "Fabricamos stands feriales y proyectos en madera personalizados. Grupo Fanoa: compromiso, diseño y excelencia artesanal.",
+      "Fabricación y montaje de stands feriales en Madrid. Grupo Fanoa ofrece soluciones llave en mano con carpintería de alta calidad y diseño personalizado.",
     url: "https://grupofanoa.com",
     siteName: "Grupo Fanoa",
-    locale: "es_PE",
+    locale: "es_ES",
     type: "website",
     images: [
       {
-        url: "https://fanoa.exportando.online/assets/images/slides/slide1.webp", // coloca la imagen real de portada
+        url: "https://www.grupofanoa.com/assets/images/slides/slide1.webp",
         width: 1200,
         height: 630,
-        alt: "Stands feriales y carpintería personalizada | Grupo Fanoa",
+        alt: "Diseño y fabricación de stands feriales en Madrid | Grupo Fanoa",
       },
     ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Grupo Fanoa | Fabricación de Stands y Carpintería Personalizada",
+    title: "Grupo Fanoa | Diseño y Montaje de Stands en Madrid",
     description:
-      "Expertos en stands feriales, carpintería y ebanistería. En Grupo Fanoa convertimos tus ideas en realidades tangibles.",
-    images: ["https://fanoa.exportando.online/assets/images/slides/slide1.webp"], // igual que el Open Graph
-    creator: "@grupofanoa", // cambia si tienes Twitter
+      "Fabricamos stands feriales en Madrid con diseño personalizado y carpintería de precisión. Soluciones llave en mano para ferias y eventos.",
+    images: [
+      "https://www.grupofanoa.com/assets/images/slides/slide1.webp",
+    ],
+    creator: "@grupofanoa",
   },
+
   robots: {
     index: true,
     follow: true,
   },
+
   alternates: {
     canonical: "https://grupofanoa.com",
   },
-  category: "Construcción y diseño de stands",
+
+  category: "Fabricación y diseño de stands en Madrid",
+
   viewport: {
     width: "device-width",
     initialScale: 1,
   },
+
   icons: {
     icon: "/favicon.ico",
     apple: "/apple-touch-icon.png",
@@ -129,7 +138,9 @@ export default async function RootLayout({
   const configData = await getConfig();
   return (
     <html lang="es">
-      <body className={`${encodeSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${encodeSans.variable} ${geistMono.variable} antialiased`}
+      >
         <head>
           <Script
             async

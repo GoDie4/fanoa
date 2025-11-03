@@ -8,8 +8,13 @@ export const feriaRoute = () => {
   router.get("/", feriaController.getAll);
   router.get("/:id", feriaController.getOne);
   router.post("/", upload.single("imagen"), feriaController.create);
+
+  router.post("/:id", upload.single("imagen"), feriaController.update);
+  router.delete("/:id", feriaController.delete);
+
   router.put("/:id", upload.single("imagen"), feriaController.update);
   router.post("/:id", feriaController.delete);
+
 
   return router;
 };

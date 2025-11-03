@@ -7,7 +7,7 @@ export const servicioPrincipalRoute = () => {
   router.get("/", servicioPrincipalController.getAll);
   router.get("/:id", servicioPrincipalController.getOne);
   router.post("/", servicioPrincipalController.create);
-  router.put("/:id", servicioPrincipalController.update);
+  router.post("/:id", servicioPrincipalController.update);
   router.delete("/:id", servicioPrincipalController.delete);
 
   return router;

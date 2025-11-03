@@ -200,9 +200,7 @@ const Footer: React.FC = () => {
                 Contacto
               </h4>
 
-              <div className="flex items-center justify-center py-8">
-                <Loader2 className="w-8 h-8 text-secondary animate-spin" />
-              </div>
+
               {contactData && (
                 <div className="space-y-3">
                   {/* Correos */}

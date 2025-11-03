@@ -1,6 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { Jwt } from "../../config/jwt";
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 
 export const validateJWT = async (req: Request, res: Response, next: NextFunction) => {
   const authorization = req.headers.authorization;

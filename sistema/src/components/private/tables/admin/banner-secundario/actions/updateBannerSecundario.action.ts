@@ -4,5 +4,6 @@ export const updateBannerSecundarioAction = async (
   id: string,
   formData: FormData
 ): Promise<void> => {
-  await adminApi.put(`/bsecundarios/${id}`, formData);
+    formData.append("_method", "PUT");
+  await adminApi.post(`/bsecundarios/${id}`, formData);
 };

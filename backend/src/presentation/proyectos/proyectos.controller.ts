@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
-import { prisma } from "../../data";
+import { PrismaClient } from "@prisma/client";
+export const prisma = new PrismaClient();
+
 import fs from "fs";
 import path from "path";
 

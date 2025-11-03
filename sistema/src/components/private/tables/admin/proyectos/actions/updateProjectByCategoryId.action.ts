@@ -1,6 +1,7 @@
 import adminApi from "../../../../api/admin.api";
 
 export const updateProjectByIdAction = async (id: string, data: FormData) => {
-  const response = await adminApi.put(`/proyectos/${id}`, data);
+  data.append("_method", "PUT");
+  const response = await adminApi.post(`/proyectos/${id}`, data);
   return response.data;
 };
