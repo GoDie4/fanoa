@@ -17,7 +17,7 @@ const PoliticaSchema = Yup.object().shape({
 });
 
 export const EditablesPoliticas = (): JSX.Element => {
-  const [politicas, setPoliticas] = useState<any[]>([]);
+  const [, setPoliticas] = useState<any[]>([]);
   const quillRefs = useRef<(ReactQuill & { editor?: any })[]>([]);
 
   const autoResize = (index: number) => {
