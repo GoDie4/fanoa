@@ -32,7 +32,6 @@ const SideBar = (): JSX.Element => {
           </h1>
           <hr className="mb-5" />
           <ul className="p-0 ml-0">
-           
             <li>
               <Link
                 to="galeria"
@@ -112,6 +111,14 @@ const SideBar = (): JSX.Element => {
                 className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
               >
                 <RiStackFill className="text-main" /> Banner Secundario
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="editables-politicas"
+                className="flex items-center gap-4 px-4 py-2 text-white transition-colors rounded-lg hover:bg-secondary-900"
+              >
+                <RiStackFill className="text-main" /> Editables Politicas
               </Link>
             </li>
           </ul>

@@ -35,6 +35,7 @@ import { EditarContacto } from "../components/private/tables/contacto/EditarCont
 import { ListaGaleria } from "../components/private/tables/admin/galeria/ListarGaleria";
 import { CrearGaleria } from "../components/private/tables/admin/galeria/CrearGaleria";
 import { EditarGaleria } from "../components/private/tables/admin/galeria/EditarGaleria";
+import { EditablesPoliticas } from "../components/private/tables/admin/politicas/EditablesPoliticas";
 
 export const Routing = (): JSX.Element => {
   return (
@@ -85,6 +86,7 @@ export const Routing = (): JSX.Element => {
             <Route path="banner-secundario/agregar" element={<CrearBannerSecundario />} />
             <Route path="banner-secundario/editar/:id" element={<EditarBannerSecundario />} />
 
+            <Route path="editables-politicas" element={<EditablesPoliticas />} />
             {/* CONFIGURACION */}
             <Route path="contacto/:id" element={<EditarContacto />} />
           </Route>
