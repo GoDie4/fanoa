@@ -7,40 +7,40 @@ import Link from "next/link";
 import { useConfig } from "../../_context/ConfigContext";
 import { ConfigResponse, GeneralData } from "@/models/generalData";
 
-// interface Stand {
-//   title: string;
-//   description: string;
-//   image: string;
-//   ctaText: string;
-//   ctaLink: string;
-// }
+interface Stand {
+  titulo: string;
+  descripcion: string;
+  imagen: string;
+  textoBoton: string;
+  enlace: string;
+}
 
-// const standsData: Stand[] = [
-//   {
-//     title: "Somos Grupo Fanoa",
-//     description:
-//       "Aceptamos el reto de tu proyecto. Nos encargamos de todo el proceso, para que no tengas que preocuparte por nada y hagas realidad tus ideas con resultados de alto nivel y una ejecución impecable.",
-//     image: "/assets/images/slides/slide1.webp",
-//     ctaText: "Conócenos Más",
-//     ctaLink: "/nosotros",
-//   },
-//   {
-//     title: "Stands para Ferias",
-//     description:
-//       "Diseñamos, fabricamos y montamos stands para ferias, congresos, eventos y exposiciones a nivel nacional e internacional. Cuidamos cada detalle para reflejar la esencia de tu marca con impacto y profesionalismo.",
-//     image: "/assets/images/slides/slide2.webp",
-//     ctaText: "Solicitar Cotización",
-//     ctaLink: "/contacto",
-//   },
-//   {
-//     title: "Mobiliario de Madera",
-//     description:
-//       "Somos especialistas en carpintería de madera para proyectos de reformas y diseños personalizados. Creamos mobiliario funcional y estético que combina calidad artesanal y diseño contemporáneo.",
-//     image: "/assets/images/slides/slide3.webp",
-//     ctaText: "Ver Galería",
-//     ctaLink: "/galeria",
-//   },
-// ];
+const standsData: Stand[] = [
+  {
+    titulo: "Somos Grupo Fanoa",
+    descripcion:
+      "Aceptamos el reto de tu proyecto. Nos encargamos de todo el proceso, para que no tengas que preocuparte por nada y hagas realidad tus ideas con resultados de alto nivel y una ejecución impecable.",
+    imagen: "/assets/images/slides/slide1.webp",
+    textoBoton: "Conócenos Más",
+    enlace: "/nosotros",
+  },
+  {
+    titulo: "Stands para Ferias",
+    descripcion:
+      "Diseñamos, fabricamos y montamos stands para ferias, congresos, eventos y exposiciones a nivel nacional e internacional. Cuidamos cada detalle para reflejar la esencia de tu marca con impacto y profesionalismo.",
+    imagen: "/assets/images/slides/slide2.webp",
+    textoBoton: "Solicitar Cotización",
+    enlace: "/contacto",
+  },
+  {
+    titulo: "Mobiliario de Madera",
+    descripcion:
+      "Somos especialistas en carpintería de madera para proyectos de reformas y diseños personalizados. Creamos mobiliario funcional y estético que combina calidad artesanal y diseño contemporáneo.",
+    imagen: "/assets/images/slides/slide3.webp",
+    textoBoton: "Ver Galería",
+    enlace: "/galeria",
+  },
+];
 
 export default function StandShowcaseSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,10 +50,10 @@ export default function StandShowcaseSlider() {
   const config = useConfig();
   const { banners } = (config as unknown as ConfigResponse).data;
 
-  const standsData = banners.map((banner) => ({
-    ...banner,
-    imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-principales/${banner.imagen}`,
-  }));
+  // const standsData = banners.map((banner) => ({
+  //   ...banner,
+  //   imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-principales/${banner.imagen}`,
+  // }));
 
   // useEffect(() => {
   //   console.log({ standsData });
@@ -188,7 +188,7 @@ export default function StandShowcaseSlider() {
 
   return (
     <div
-      className="relative w-full h-screen overflow-hidden bg-morado/40 pt-[151px]"
+      className="relative w-full h-screen overflow-hidden bg-morado/60 pt-[151px]"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -208,8 +208,10 @@ export default function StandShowcaseSlider() {
               className="w-full h-full object-cover"
             />
             {/* Overlay gradiente */}
-            <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-transparent"></div>
-            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/10 to-transparent"></div>
+            {/* <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/20 to-transparent"></div> */}
+            {/* <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/10 to-transparent"></div> */}
+            <div className="absolute inset-0 bg-gradient-to-br from-black/30 via-black/60 to-transparent"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-black/40 via-black/50 to-transparent"></div>
           </motion.div>
 
           {/* Barras estructurales animadas */}
@@ -292,7 +294,7 @@ export default function StandShowcaseSlider() {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="text-xl  text-gray-100 mb-8  text-justify max-w-2xl"
+                  className="text-xl text-gray-100 mb-8 text-justify max-w-2xl font-semibold"
                 >
                   {standsData[currentIndex]?.descripcion}
                 </motion.p>
@@ -307,7 +309,7 @@ export default function StandShowcaseSlider() {
                   exit="exit"
                 >
                   <Link
-                    href={standsData[currentIndex]?.enlace ?? '#'}
+                    href={standsData[currentIndex]?.enlace ?? "#"}
                     className="inline-flex items-center gap-3 px-6 py-3 bg-primary text-white text-lg rounded-full transition-all duration-300 group"
                   >
                     {standsData[currentIndex]?.textoBoton}

@@ -77,6 +77,15 @@ export interface Usuario {
   createdAt: string;
 }
 
+// 📜 Política de privacidad o condiciones
+export interface Politica {
+  id: string;
+  titulo: string;
+  descripcion: string; // HTML proveniente del editor (string)
+  createdAt: string;
+  updatedAt: string;
+}
+
 // 📦 Datos generales que devuelve /api/v1/general
 export interface GeneralData {
   banners: Banner[];
@@ -90,6 +99,7 @@ export interface GeneralData {
   configuracion: Configuracion;
   contacto: Contacto[];
   usuarios: Usuario[];
+  politicas: Politica[]; // 🆕 agregado aquí
 }
 
 // 🌍 Respuesta completa del endpoint
@@ -97,33 +107,32 @@ export interface ConfigResponse {
   data: GeneralData;
 }
 
-
 interface Numero {
-    numero: string;
-    position: number;
-  }
-  
-  interface Correo {
-    correo: string;
-    descripcion: string;
-    position: number;
-  }
-  
-  interface Configuracion {
-    id: number;
-    numeros: Numero[];
-    correos: Correo[];
-    direccion1: string;
-    direccion2: string;
-    direccion3: string;
-    horario: string;
-    facebook?: string | null;
-    instagram?: string | null;
-    tiktok?: string | null;
-    twiter?: string | null;
-    linkedin?: string | null;
-    youtube?: string | null;
-    whatsapp?: string | null;
-    created_at?: string | null;
-    updated_at?: string | null;
-  }
+  numero: string;
+  position: number;
+}
+
+interface Correo {
+  correo: string;
+  descripcion: string;
+  position: number;
+}
+
+interface Configuracion {
+  id: number;
+  numeros: Numero[];
+  correos: Correo[];
+  direccion1: string;
+  direccion2: string;
+  direccion3: string;
+  horario: string;
+  facebook?: string | null;
+  instagram?: string | null;
+  tiktok?: string | null;
+  twiter?: string | null;
+  linkedin?: string | null;
+  youtube?: string | null;
+  whatsapp?: string | null;
+  created_at?: string | null;
+  updated_at?: string | null;
+}

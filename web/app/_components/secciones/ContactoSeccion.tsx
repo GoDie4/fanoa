@@ -4,7 +4,7 @@
 import React, { useRef, useState, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
 
-import { LucideIcon, Mail, Phone, MapPin, Clock} from "lucide-react";
+import { LucideIcon, Mail, Phone, MapPin, Clock } from "lucide-react";
 import { Facebook, Instagram } from "lucide-react";
 import { RenderPresentation } from "./contacto/RenderPresentation";
 import { useConfig } from "../../_context/ConfigContext";
@@ -43,9 +43,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
     const contactInfo: ContactInfo[] = [];
 
     // Correos (máximo 3)
-    const correos = contacto.correos
-      .sort((a: any, b: any) => a.position - b.position)
-      .slice(0, 3);
+    const correos = contacto.correos.sort((a: any, b: any) => a.position - b.position).slice(0, 3);
 
     correos.forEach((correo: any) => {
       contactInfo.push({
@@ -57,9 +55,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
     });
 
     // Teléfonos (máximo 3)
-    const numeros = contacto.numeros
-      .sort((a: any, b: any) => a.position - b.position)
-      .slice(0, 3);
+    const numeros = contacto.numeros.sort((a: any, b: any) => a.position - b.position).slice(0, 3);
 
     numeros.forEach((numero: any) => {
       contactInfo.push({
@@ -143,12 +139,11 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
           <motion.div
             ref={formRef}
             initial={{ opacity: 0, x: -50 }}
-            animate={
-              isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }
-            }
+            animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
             className="order-2 lg:order-1"
           >
+            <h2 className="text-2xl text-center mb-4 font-semibold">Pide tu presupuesto</h2>
             <div className="space-y-6">
               {/* Nombre */}
               <div>
@@ -167,9 +162,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
               {/* Email y Teléfono */}
               <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 <div>
-                  <label className="block mb-2 text-sm font-semibold text-gray-700">
-                    Email *
-                  </label>
+                  <label className="block mb-2 text-sm font-semibold text-gray-700">Email *</label>
                   <input
                     type="email"
                     value={formData.email}
@@ -180,9 +173,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
                 </div>
 
                 <div>
-                  <label className="block mb-2 text-sm font-semibold text-gray-700">
-                    Teléfono
-                  </label>
+                  <label className="block mb-2 text-sm font-semibold text-gray-700">Teléfono</label>
                   <input
                     type="tel"
                     value={formData.phone}
@@ -195,9 +186,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
 
               {/* Empresa */}
               <div>
-                <label className="block mb-2 text-sm font-semibold text-gray-700">
-                  Empresa
-                </label>
+                <label className="block mb-2 text-sm font-semibold text-gray-700">Empresa</label>
                 <input
                   type="text"
                   value={formData.company}
@@ -208,10 +197,8 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
               </div>
 
               {/* Mensaje */}
-              <div>
-                <label className="block mb-2 text-sm font-semibold text-gray-700">
-                  Mensaje *
-                </label>
+              <div className="mb-2">
+                <label className="block mb-2 text-sm font-semibold text-gray-700">Mensaje *</label>
                 <textarea
                   value={formData.message}
                   onChange={(e) => handleChange("message", e.target.value)}
@@ -221,6 +208,15 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
                 />
               </div>
 
+              <div className="flex items-center gap-2 mb-4">
+                <input
+                  type="checkbox"
+                  className="w-5 h-5 rounded border-2 border-gray-200 text-primary focus:ring-primary"
+                />
+                <label className="text-sm text-gray-700">
+                  Acepto la <span className="font-bold">política de privacidad</span>
+                </label>
+              </div>
               {/* Botón */}
               <motion.button
                 onClick={handleSubmit}
@@ -237,25 +233,18 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
           <motion.div
             ref={infoRef}
             initial={{ opacity: 0, x: 50 }}
-            animate={
-              isInfoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }
-            }
+            animate={isInfoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8 }}
             className="order-1 space-y-8 lg:order-2"
           >
             {/* Tarjetas de información */}
-            {contactData?.contactInfo &&
-              contactData.contactInfo.length > 0 ? (
+            {contactData?.contactInfo && contactData.contactInfo.length > 0 ? (
               <div className="space-y-4">
                 {contactData.contactInfo.map((info, index) => (
                   <motion.div
                     key={index}
                     initial={{ opacity: 0, y: 20 }}
-                    animate={
-                      isInfoInView
-                        ? { opacity: 1, y: 0 }
-                        : { opacity: 0, y: 20 }
-                    }
+                    animate={isInfoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                     transition={{ duration: 0.6, delay: index * 0.1 }}
                     className="p-6 transition-colors duration-300 bg-gray-50 rounded-xl hover:bg-gray-100"
                   >
@@ -270,9 +259,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
                           <info.icon className="w-8 h-8" />
                         </div>
                         <div>
-                          <h3 className="mb-1 font-semibold text-gray-900">
-                            {info.title}
-                          </h3>
+                          <h3 className="mb-1 font-semibold text-gray-900">{info.title}</h3>
                           <p className="text-gray-600 transition-colors duration-300 group-hover:text-primary">
                             {info.value}
                           </p>
@@ -284,9 +271,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
                           <info.icon className="w-8 h-8" />
                         </div>
                         <div>
-                          <h3 className="mb-1 font-semibold text-gray-900">
-                            {info.title}
-                          </h3>
+                          <h3 className="mb-1 font-semibold text-gray-900">{info.title}</h3>
                           <p className="text-gray-600">{info.value}</p>
                         </div>
                       </div>
@@ -296,45 +281,37 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
               </div>
             ) : (
               <div className="py-8 text-center">
-                <p className="text-gray-500">
-                  No hay información de contacto disponible
-                </p>
+                <p className="text-gray-500">No hay información de contacto disponible</p>
               </div>
             )}
 
             {/* Redes sociales */}
-            {
-              contactData?.socialLinks &&
-              contactData.socialLinks.length > 0 && (
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={
-                    isInfoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }
-                  }
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="p-8 rounded-xl"
-                >
-                  <h3 className="mb-4 text-xl font-bold text-gray-800">
-                    Síguenos en redes
-                  </h3>
-                  <div className="flex gap-4">
-                    {contactData.socialLinks.map((social, index) => (
-                      <motion.a
-                        key={index}
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        whileHover={{ scale: 1.1, rotate: 5 }}
-                        whileTap={{ scale: 0.95 }}
-                        className="flex items-center justify-center w-12 h-12 transition-colors duration-300 rounded-lg bg-white/20 hover:bg-white/30"
-                        aria-label={social.name}
-                      >
-                        <social.icon className="w-6 h-6 text-primary" />
-                      </motion.a>
-                    ))}
-                  </div>
-                </motion.div>
-              )}
+            {contactData?.socialLinks && contactData.socialLinks.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInfoInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="p-8 rounded-xl"
+              >
+                <h3 className="mb-4 text-xl font-bold text-gray-800">Síguenos en redes</h3>
+                <div className="flex gap-4">
+                  {contactData.socialLinks.map((social, index) => (
+                    <motion.a
+                      key={index}
+                      href={social.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center justify-center w-12 h-12 transition-colors duration-300 rounded-lg bg-white/20 hover:bg-white/30"
+                      aria-label={social.name}
+                    >
+                      <social.icon className="w-6 h-6 text-primary" />
+                    </motion.a>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </div>
