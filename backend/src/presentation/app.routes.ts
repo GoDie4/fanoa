@@ -14,6 +14,7 @@ import { generalRoute } from "./main/general.route";
 import { bFinalRoute } from "./banners-final/bFinal.route";
 import { configuracionRoute } from "./configuraciones/configuraciones.route";
 import { galeriaRoute } from "./galeria/galeria.route";
+import { politicasRoute } from "./politicas/politicas.route";
 
 export const appRouter = () => {
   const router = Router();
@@ -31,6 +32,7 @@ export const appRouter = () => {
   router.use("/configuracion", configuracionRoute());
   router.use("/bprincipales", bannersPrincipalesRoute());
   router.use("/auth", authRoute());
+  router.use("/politicas", politicasRoute());
   //PARA TRAER TODOS LOS DATOS
   router.use("/general", generalRoute());
   router.use("/bfinal", bFinalRoute());

@@ -11,7 +11,7 @@ export const bPrincipalesController = {
       const banners = await prisma.bannerPrincipal.findMany({
         orderBy: { createdAt: "asc" },
       });
-      console.log(banners);
+      // console.log(banners);
       return res.status(200).json(banners);
     } catch (error) {
       // console.error("Error al obtener banners principales:", error);

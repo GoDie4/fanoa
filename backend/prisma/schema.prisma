@@ -174,3 +174,12 @@ model Galeria {
 
     @@map("galeria")
 }
+
+model Politicas {
+    id      String @id @default(uuid())
+    titulo  String
+    descripcion String @db.Text
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    @@map("politicas")
+}

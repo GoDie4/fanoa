@@ -17,6 +17,7 @@ export const generalController = {
         usuariosSafe,
         galeria,
         configuracion,
+        politicas,
       ] = await Promise.all([
         prisma.bannerPrincipal.findMany({ orderBy: { createdAt: "asc" } }),
         prisma.bannerSecundario.findMany({ orderBy: { createdAt: "asc" } }),
@@ -45,6 +46,7 @@ export const generalController = {
         }),
         prisma.galeria.findMany({ orderBy: { createdAt: "asc" } }),
         prisma.configuracion.findMany({ orderBy: { createdAt: "asc" } }),
+        prisma.politicas.findMany({ orderBy: { createdAt: "asc" } }),
       ]);
 
       const data = {
@@ -59,6 +61,7 @@ export const generalController = {
         usuarios: usuariosSafe,
         galeria,
         configuracion,
+        politicas,
       };
 
       // console.log(JSON.stringify(data, null, 2));
