@@ -1,8 +1,10 @@
 // src/components/private/tables/admin/trabajo/CrearTrabajo.tsx
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 import { TitleBriefs } from "../../../../shared/TitleBriefs";
 import { InputsBriefs } from "../../../../shared/InputsBriefs";
@@ -22,6 +24,8 @@ export const CrearTrabajo = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
+  const quillRef = useRef<ReactQuill | null>(null);
+
   const formik = useFormik({
     initialValues: {
       titulo: "",
@@ -32,7 +36,6 @@ export const CrearTrabajo = (): JSX.Element => {
     onSubmit: async (values, { resetForm }) => {
       try {
         setLoading(true);
-
         if (!file) return;
 
         const formData = new FormData();
@@ -70,15 +73,23 @@ export const CrearTrabajo = (): JSX.Element => {
           <Errors errors={formik.errors.titulo} touched={formik.touched.titulo} />
         </div>
 
-        {/* Campo de descripción */}
+        {/* Campo de descripción con ReactQuill */}
         <div className="w-full">
           <TitleBriefs titulo="Descripción" />
-          <InputsBriefs
-            name="descripcion"
-            type="textarea"
+          <ReactQuill
+            ref={quillRef}
+            theme="snow"
             value={formik.values.descripcion}
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
+            onChange={(content) => formik.setFieldValue("descripcion", content)}
+            modules={{
+              toolbar: [
+                [{ header: [1, 2, false] }],
+                ["bold", "italic", "underline"],
+                [{ list: "ordered" }, { list: "bullet" }],
+                ["link", "clean"],
+              ],
+            }}
+            className="bg-white rounded-lg text-black mt-4"
           />
           <Errors errors={formik.errors.descripcion} touched={formik.touched.descripcion} />
         </div>
