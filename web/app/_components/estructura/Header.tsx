@@ -330,9 +330,9 @@ export const Header = () => {
               )}
             </div>
           ))}
-          <button className="w-full px-6 py-3 mt-4 font-bold text-white transition-all duration-300 rounded-lg shadow-lg bg-primary hover:shadow-cyan-400/50">
+          {/* <button className="w-full px-6 py-3 mt-4 font-bold text-white transition-all duration-300 rounded-lg shadow-lg bg-primary hover:shadow-cyan-400/50">
             COTIZAR AHORA
-          </button>
+          </button> */}
         </nav>
       </div>
     </header>

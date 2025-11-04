@@ -141,7 +141,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
             initial={{ opacity: 0, x: -50 }}
             animate={isFormInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
             transition={{ duration: 0.8 }}
-            className="order-2 lg:order-1"
+            className="order-1 lg:order-1"
           >
             <h2 className="text-2xl text-center mb-4 font-semibold">Pide tu presupuesto</h2>
             <div className="space-y-6">
@@ -235,7 +235,7 @@ const ContactSection = ({ renderTitle = true }: { renderTitle?: boolean }) => {
             initial={{ opacity: 0, x: 50 }}
             animate={isInfoInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
             transition={{ duration: 0.8 }}
-            className="order-1 space-y-8 lg:order-2"
+            className="order-2 space-y-8 lg:order-2"
           >
             {/* Tarjetas de información */}
             {contactData?.contactInfo && contactData.contactInfo.length > 0 ? (

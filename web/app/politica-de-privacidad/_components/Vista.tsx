@@ -14,6 +14,7 @@ const PrivacyPolicyPage: React.FC = () => {
     if (politicas.length > 0) {
       setActiveSection(politicas[0].id);
 
+      console.log({politicas});
       // Obtener la última fecha de actualización
       const latestDate = politicas
         .map((p) => new Date(p.updatedAt))

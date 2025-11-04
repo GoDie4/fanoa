@@ -64,7 +64,8 @@ const CTASection: React.FC = () => {
             }`}
           >
             <div
-              className={`absolute inset-0 bg-cover bg-center brightness-110 group-hover:brightness-125 transition-transform duration-[5000ms] ease-out ${
+              // className={`absolute inset-0 bg-cover bg-center brightness-110 group-hover:brightness-125 transition-transform duration-[5000ms] ease-out ${
+              className={`absolute inset-0 bg-cover bg-center brightness-110 transition-transform duration-[5000ms] ease-out ${
                 index === currentImageIndex ? "scale-110" : "scale-100"
               }`}
               style={{ backgroundImage: `url(${image.url})` }}
@@ -76,7 +77,7 @@ const CTASection: React.FC = () => {
       {/* Overlay oscuro */}
 
       {/* Gradient overlay para mejor legibilidad */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/10 to-transparent"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/50 to-transparent"></div>
 
       {/* Contenido principal */}
       <div className="relative container mx-auto  px-4 md:px-14 py-24 lg:py-32">
@@ -98,7 +99,7 @@ const CTASection: React.FC = () => {
               <span className="italic font-light">marcar presencia?</span>
             </h2>
 
-            <p className="text-xl text-white/80 leading-relaxed max-w-lg">
+            <p className="text-xl text-white leading-relaxed max-w-lg font-semibold">
               Diseñamos, fabricamos y montamos stands y estructuras con
               precisión y estilo. Soluciones integrales que elevan la imagen de
               tu marca en cada evento.

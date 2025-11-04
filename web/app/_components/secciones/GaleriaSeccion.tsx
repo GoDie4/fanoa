@@ -167,20 +167,33 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   );
 };
 
-const Gallery: React.FC = () => {
+
+interface GalleryProps {
+  filtro?: string;
+}
+
+const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
+
+    const titulo = filtro === "stands"
+    ? "Fabricación de Stands"
+    : filtro === "carpinteria"
+    ? "Carpintería y Ebanistería"
+    : "Galería";
+
   return (
     <div className="min-h-screen py-20 bg-white ">
       <div className="container  px-4 md:px-14 mx-auto mb-20">
         <div className="grid items-end grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-6">
             <div className="overflow-hidden"></div>
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-primary font-sans uppercase  leading-[0.9] tracking-tight">
-              Galería
+            {/* <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-primary font-sans uppercase  leading-[0.9] tracking-tight"> */}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary font-sans uppercase leading-tight tracking-tight">
+              {titulo}
             </h2>
             <div className="flex items-center gap-4 pt-2">
               <div className="h-[2px] w-16 bg-secondary"></div>
               <span className="font-mono text-sm text-gray-700">
-                Nuestros trabajos
+                {filtro ? `Filtrado por: ${filtro}` : "Nuestros trabajos"}
               </span>
             </div>
           </div>
@@ -205,7 +218,7 @@ const Gallery: React.FC = () => {
         </div>
       </div>
       <div className="container mx-auto overflow-hidden">
-        <GridGaleria/>
+        <GridGaleria filtro={filtro}/>
       </div>
     </div>
   );
