@@ -115,7 +115,7 @@ async function getConfig() {
   try {
     // Fetch directo a tu backend
     const res = await fetch("http://localhost:4000/api/v1/general", {
-      // next: { revalidate: 100 },
+      next: { revalidate: 50 },
     });
     console.log({ res });
 
