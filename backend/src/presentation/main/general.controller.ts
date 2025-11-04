@@ -38,7 +38,7 @@ export const generalController = {
             },
           },
         }),
-        prisma.proyecto.findMany({ orderBy: { createdAt: "asc" } }),
+        prisma.proyecto.findMany({ orderBy: { createdAt: "asc" }, include: { categoria: true } }),
         prisma.trabajo.findMany({ orderBy: { createdAt: "asc" } }),
         prisma.feria.findMany({ orderBy: { createdAt: "asc" } }),
         prisma.seccionContacto.findMany({ orderBy: { createdAt: "asc" } }),

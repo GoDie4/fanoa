@@ -1,7 +1,9 @@
 // src/components/private/tables/admin/trabajo/EditarTrabajo.tsx
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { useFormik } from "formik";
+import ReactQuill from "react-quill";
+import "react-quill/dist/quill.snow.css";
 
 import { TitleBriefs } from "../../../../shared/TitleBriefs";
 import { InputsBriefs } from "../../../../shared/InputsBriefs";
@@ -18,6 +20,9 @@ export const EditarTrabajo = (): JSX.Element => {
   const [file, setFile] = useState<File | null>(null);
   const [loading, setLoading] = useState(false);
   const [initialData, setInitialData] = useState<TrabajoResponse | null>(null);
+
+  // 🔹 Ref para el editor
+  const quillRef = useRef<ReactQuill | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,18 +45,15 @@ export const EditarTrabajo = (): JSX.Element => {
       imagen: null as File | null,
     },
     onSubmit: async (values) => {
-      console.log(values.descripcion);
       if (!id) return;
       try {
         setLoading(true);
-
         const formData = new FormData();
         formData.append("titulo", values.titulo);
         formData.append("descripcion", values.descripcion);
         if (file) formData.append("imagen", file);
 
         await updateTrabajoByIdAction(id, formData);
-
         navigate(-1);
       } catch (error) {
         console.error("Error al actualizar trabajo:", error);
@@ -80,17 +82,26 @@ export const EditarTrabajo = (): JSX.Element => {
         />
         <Errors errors={formik.errors.titulo} touched={formik.touched.titulo} />
 
-        {/* Campo de descripción */}
-        <InputsBriefs
-          name="descripcion"
-          type="textarea"
+        {/* Campo de descripción con ReactQuill */}
+        <label className="font-medium text-white">Descripción</label>
+        <ReactQuill
+          ref={quillRef}
+          theme="snow"
           value={formik.values.descripcion}
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
+          onChange={(content) => formik.setFieldValue("descripcion", content)}
+          modules={{
+            toolbar: [
+              [{ header: [1, 2, false] }],
+              ["bold", "italic", "underline"],
+              [{ list: "ordered" }, { list: "bullet" }],
+              ["link", "clean"],
+            ],
+          }}
+          className="bg-white rounded-lg text-black"
         />
         <Errors errors={formik.errors.descripcion} touched={formik.touched.descripcion} />
 
-        {/* Campo de imagen con la imagen actual */}
+        {/* Campo de imagen */}
         <ImageUploaderCustom
           file={file}
           setFile={(newFile) => {

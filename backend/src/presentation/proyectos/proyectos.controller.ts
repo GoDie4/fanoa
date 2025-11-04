@@ -16,7 +16,7 @@ export const proyectosController = {
       const proyectos = await prisma.proyecto.findMany({
         where,
         orderBy: { createdAt: "asc" },
-        // include: { categoria: true },
+        include: { categoria: true },
       });
 
       return res.status(200).json(proyectos);

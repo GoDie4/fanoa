@@ -292,7 +292,7 @@ const ServiceDetailView: React.FC = () => {
             </Link>
 
             <Link
-              href={"/galeria"}
+              href={"/galeria/carpinteria"}
               className="px-10 py-3 bg-transparent text-black font-bold text-lg rounded-full border-2 border-black/20 hover:border-primary transition-all duration-300 hover:bg-primary hover:text-white"
             >
               Ver más proyectos
