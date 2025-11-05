@@ -9,7 +9,7 @@ export interface GalleryImage {
   url: string;
   span: string;
   animationType: "wave" | "reveal" | "fragment" | "elastic";
-  nombre?: string
+  nombre?: string;
 }
 
 // const images: GalleryImage[] = [
@@ -37,7 +37,7 @@ export interface GalleryImage {
 //     span: "col-span-1 row-span-3 md:col-span-1 md:row-span-3",
 //     animationType: "elastic",
 //   },
- 
+
 //   {
 //     id: 7,
 //     url: "/assets/images/galeria/galeria7.webp",
@@ -67,8 +67,6 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-
-  
   const getAnimationVariants = () => {
     switch (image.animationType) {
       case "wave":
@@ -167,18 +165,17 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   );
 };
 
-
 interface GalleryProps {
   filtro?: string;
 }
 
 const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
-
-    const titulo = filtro === "stands"
-    ? "Fabricación de Stands"
-    : filtro === "carpinteria"
-    ? "Carpintería y Ebanistería"
-    : "Galería";
+  const titulo =
+    filtro === "stands"
+      ? "Fabricación de Stands"
+      : filtro === "carpinteria"
+      ? "Carpintería y Ebanistería"
+      : "Galería";
 
   return (
     <div className="min-h-screen py-20 bg-white ">
@@ -192,9 +189,10 @@ const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
             </h2>
             <div className="flex items-center gap-4 pt-2">
               <div className="h-[2px] w-16 bg-secondary"></div>
-              <span className="font-mono text-sm text-gray-700">
+              {/* <span className="font-mono text-sm text-gray-700">
                 {filtro ? `Filtrado por: ${filtro}` : "Nuestros trabajos"}
-              </span>
+              </span> */}
+              <span className="font-mono text-sm text-gray-700">Nuestros trabajos</span>
             </div>
           </div>
 
@@ -205,20 +203,16 @@ const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
               </p>
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full cursor-pointer border-primary hover:bg-primary hover:text-white group">
-                  <span className="text-lg duration-300 animate-bounce">
-                    ↓
-                  </span>
+                  <span className="text-lg duration-300 animate-bounce">↓</span>
                 </div>
-                <span className="text-sm text-gray-800">
-                  Descubre nuestros proyectos
-                </span>
+                <span className="text-sm text-gray-800">Descubre nuestros proyectos</span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="container mx-auto overflow-hidden">
-        <GridGaleria filtro={filtro}/>
+        <GridGaleria filtro={filtro} />
       </div>
     </div>
   );

@@ -14,7 +14,7 @@ const PrivacyPolicyPage: React.FC = () => {
     if (politicas.length > 0) {
       setActiveSection(politicas[0].id);
 
-      console.log({politicas});
+      console.log({ politicas });
       // Obtener la última fecha de actualización
       const latestDate = politicas
         .map((p) => new Date(p.updatedAt))
@@ -30,6 +30,10 @@ const PrivacyPolicyPage: React.FC = () => {
     }
   }, [politicas]);
 
+  useEffect(() => {
+    console.log(politicas.slice(0, 11));
+  }, []);
+
   return (
     <div className="min-h-screen bg-white">
       <section className="py-16 lg:py-48">
@@ -43,19 +47,22 @@ const PrivacyPolicyPage: React.FC = () => {
                     Índice de Contenidos
                   </h3>
                   <nav className="space-y-2">
-                    {politicas.map((p) => (
-                      <button
-                        key={p.id}
-                        onClick={() => setActiveSection(p.id)}
-                        className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
-                          activeSection === p.id
-                            ? "bg-primary text-white font-semibold"
-                            : "hover:bg-gray-200 text-gray-700"
-                        }`}
-                      >
-                        {p.titulo}
-                      </button>
-                    ))}
+                    {politicas.map((p, index) => {
+                      if (index + 1 >= 12) return null;
+                      return (
+                        <button
+                          key={p.id}
+                          onClick={() => setActiveSection(p.id)}
+                          className={`w-full text-left px-4 py-3 rounded-lg transition-all duration-300 ${
+                            activeSection === p.id
+                              ? "bg-primary text-white font-semibold"
+                              : "hover:bg-gray-200 text-gray-700"
+                          }`}
+                        >
+                          {p.titulo}
+                        </button>
+                      );
+                    })}
                   </nav>
                 </div>
 
@@ -89,7 +96,7 @@ const PrivacyPolicyPage: React.FC = () => {
               )}
 
               <div className="space-y-12">
-                {politicas.map((p) => (
+                {politicas.slice(0, 11).map((p) => (
                   <article
                     key={p.id}
                     id={p.id}

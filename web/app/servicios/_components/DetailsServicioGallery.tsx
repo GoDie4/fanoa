@@ -33,6 +33,10 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
     };
   }
 
+  // useEffect(() => {
+  //   console.log({ serviceData });
+  // }, []);
+
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -67,6 +71,7 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
                   <div className="w-12 h-12 mx-auto rounded-full border-2 border-white flex items-center justify-center">
                     <span className="text-white text-xl">+</span>
                   </div>
+                  <p className="text-white">{image.titulo}</p>
                 </div>
               </div>
             </div>

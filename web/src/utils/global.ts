@@ -1,6 +1,9 @@
+const url = process.env.NEXT_PUBLIC_API_URL_PROD;
+const urlImages = process.env.NEXT_PUBLIC_API_URL_PROD_DEFAULT;
+
 export const Global = {
-  url: "https://api.grupofanoa.com/public/api",
-  urlImages: "https://api.grupofanoa.com/public",
+  url,
+  urlImages,
 };
 
 // export const Global = {
