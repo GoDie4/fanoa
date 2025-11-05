@@ -1,9 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { ConfigResponse, GeneralData } from "@/models/generalData";
+import { ConfigResponse } from "@/models/generalData";
 import { useConfig } from "../../../_context/ConfigContext";
-import Image from "next/image";
-import { useEffect } from "react";
 
 export const AdditionalService = () => {
   const config = useConfig();
@@ -77,7 +76,7 @@ export const AdditionalService = () => {
                     transition-all duration-500 ease-out 
                     group-hover:opacity-100 group-hover:translate-y-0"
                   >
-                  {/* <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out"> */}
+                    {/* <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out"> */}
                     {servicio.subtitulo}
                   </h2>
                 </div>

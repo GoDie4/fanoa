@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import { useConfig } from "../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
-interface FeriaLogo {
-  id: number;
-  nombre: string;
-  logo: string;
-  año?: string;
-}
+// interface FeriaLogo {
+//   id: number;
+//   nombre: string;
+//   logo: string;
+//   año?: string;
+// }
 
 // Logos de ferias - reemplaza con tus datos reales
 // const feriasLogos: FeriaLogo[] = [

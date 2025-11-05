@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useConfig } from "../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 

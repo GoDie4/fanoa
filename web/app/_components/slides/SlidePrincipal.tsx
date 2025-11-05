@@ -5,7 +5,7 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { useConfig } from "../../_context/ConfigContext";
-import { ConfigResponse, GeneralData } from "@/models/generalData";
+import { ConfigResponse } from "@/models/generalData";
 
 interface Stand {
   titulo: string;
@@ -15,32 +15,32 @@ interface Stand {
   enlace: string;
 }
 
-const standsData: Stand[] = [
-  {
-    titulo: "Somos Grupo Fanoa",
-    descripcion:
-      "Aceptamos el reto de tu proyecto. Nos encargamos de todo el proceso, para que no tengas que preocuparte por nada y hagas realidad tus ideas con resultados de alto nivel y una ejecución impecable.",
-    imagen: "/assets/images/slides/slide1.webp",
-    textoBoton: "Conócenos Más",
-    enlace: "/nosotros",
-  },
-  {
-    titulo: "Stands para Ferias",
-    descripcion:
-      "Diseñamos, fabricamos y montamos stands para ferias, congresos, eventos y exposiciones a nivel nacional e internacional. Cuidamos cada detalle para reflejar la esencia de tu marca con impacto y profesionalismo.",
-    imagen: "/assets/images/slides/slide2.webp",
-    textoBoton: "Solicitar Cotización",
-    enlace: "/contacto",
-  },
-  {
-    titulo: "Mobiliario de Madera",
-    descripcion:
-      "Somos especialistas en carpintería de madera para proyectos de reformas y diseños personalizados. Creamos mobiliario funcional y estético que combina calidad artesanal y diseño contemporáneo.",
-    imagen: "/assets/images/slides/slide3.webp",
-    textoBoton: "Ver Galería",
-    enlace: "/galeria",
-  },
-];
+// const standsData: Stand[] = [
+//   {
+//     titulo: "Somos Grupo Fanoa",
+//     descripcion:
+//       "Aceptamos el reto de tu proyecto. Nos encargamos de todo el proceso, para que no tengas que preocuparte por nada y hagas realidad tus ideas con resultados de alto nivel y una ejecución impecable.",
+//     imagen: "/assets/images/slides/slide1.webp",
+//     textoBoton: "Conócenos Más",
+//     enlace: "/nosotros",
+//   },
+//   {
+//     titulo: "Stands para Ferias",
+//     descripcion:
+//       "Diseñamos, fabricamos y montamos stands para ferias, congresos, eventos y exposiciones a nivel nacional e internacional. Cuidamos cada detalle para reflejar la esencia de tu marca con impacto y profesionalismo.",
+//     imagen: "/assets/images/slides/slide2.webp",
+//     textoBoton: "Solicitar Cotización",
+//     enlace: "/contacto",
+//   },
+//   {
+//     titulo: "Mobiliario de Madera",
+//     descripcion:
+//       "Somos especialistas en carpintería de madera para proyectos de reformas y diseños personalizados. Creamos mobiliario funcional y estético que combina calidad artesanal y diseño contemporáneo.",
+//     imagen: "/assets/images/slides/slide3.webp",
+//     textoBoton: "Ver Galería",
+//     enlace: "/galeria",
+//   },
+// ];
 
 export default function StandShowcaseSlider() {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -50,10 +50,10 @@ export default function StandShowcaseSlider() {
   const config = useConfig();
   const { banners } = (config as unknown as ConfigResponse).data;
 
-  // const standsData = banners.map((banner) => ({
-  //   ...banner,
-  //   imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-principales/${banner.imagen}`,
-  // }));
+  const standsData = banners.map((banner) => ({
+    ...banner,
+    imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-principales/${banner.imagen}`,
+  }));
 
   // useEffect(() => {
   //   console.log({ standsData });
@@ -76,6 +76,7 @@ export default function StandShowcaseSlider() {
     }, 50);
 
     return () => clearInterval(progressInterval);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPaused, currentIndex]);
 
   const goToSlide = (index: number) => {

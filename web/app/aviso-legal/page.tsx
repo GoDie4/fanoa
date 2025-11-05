@@ -1,32 +1,31 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { useConfig } from "../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
-const politicas = [
-  {
-    id: "aviso-legal",
-    titulo: "Aviso Legal",
-    descripcion: `
-      <p>Este es un ejemplo de contenido de Aviso Legal. Aquí irá el texto completo del aviso.</p>
-    `,
-  },
-  {
-    id: "politica-privacidad",
-    titulo: "Política de Privacidad",
-    descripcion: `
-      <p>Este es un ejemplo de contenido de Política de Privacidad. Aquí irá la descripción completa.</p>
-    `,
-  },
-  {
-    id: "cookies",
-    titulo: "Política de Cookies",
-    descripcion: `
-      <p>Este es un ejemplo de contenido de Política de Cookies. Aquí irá la descripción completa.</p>
-    `,
-  },
-];
+// const politicas = [
+//   {
+//     id: "aviso-legal",
+//     titulo: "Aviso Legal",
+//     descripcion: `
+//       <p>Este es un ejemplo de contenido de Aviso Legal. Aquí irá el texto completo del aviso.</p>
+//     `,
+//   },
+//   {
+//     id: "politica-privacidad",
+//     titulo: "Política de Privacidad",
+//     descripcion: `
+//       <p>Este es un ejemplo de contenido de Política de Privacidad. Aquí irá la descripción completa.</p>
+//     `,
+//   },
+//   {
+//     id: "cookies",
+//     titulo: "Política de Cookies",
+//     descripcion: `
+//       <p>Este es un ejemplo de contenido de Política de Cookies. Aquí irá la descripción completa.</p>
+//     `,
+//   },
+// ];
 
 export default function AvisoLegalPage() {
   const config = useConfig();

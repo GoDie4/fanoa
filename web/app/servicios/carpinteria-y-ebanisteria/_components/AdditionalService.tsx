@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { ConfigResponse } from "@/models/generalData";
@@ -74,7 +75,7 @@ export const AdditionalService = () => {
                     transition-all duration-500 ease-out 
                     group-hover:opacity-100 group-hover:translate-y-0"
                   >
-                  {/* <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out"> */}
+                    {/* <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out"> */}
                     {servicio.subtitulo}
                   </h2>
                 </div>

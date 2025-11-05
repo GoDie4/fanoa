@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect } from "react";
 import { useConfig } from "../../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
