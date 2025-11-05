@@ -110,9 +110,11 @@ export const metadata: Metadata = {
 //   }
 // }
 async function getConfig() {
+  const url = process.env.NEXT_PUBLIC_API_URL_PROD;
+
   try {
     // Fetch directo a tu backend
-    const res = await fetch("http:localhost:4000/api/v1/general", {
+    const res = await fetch(`${url}/v1/general`, {
       next: { revalidate: 50 },
     });
     console.log({ res });
