@@ -1,6 +1,6 @@
 "use client";
 
-import { ConfigResponse, GeneralData } from "@/models/generalData";
+import { ConfigResponse } from "@/models/generalData";
 import { useConfig } from "../../../_context/ConfigContext";
 
 export const ServiceHero = () => {
