@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GridGaleria } from "./galeria/GridGaleria";
 
@@ -66,6 +66,10 @@ interface GalleryItemProps {
 export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
+
+  useEffect(() => {
+    console.log({ image });
+  }, []);
 
   const getAnimationVariants = () => {
     switch (image.animationType) {
@@ -147,20 +151,26 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   return (
     <motion.div
       ref={ref}
-      className={`${image.span} relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl hover:shadow-purple-500/50 transition-shadow duration-300`}
+      className={`${image.span} group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl transition-shadow duration-300 hover:shadow-purple-500/50`}
       //@ts-ignore
       variants={getAnimationVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
       <motion.img
-        src={`${image.url}`}
-        alt={`Gallery image ${image.id}`}
-        className="object-cover w-full h-full"
+        src={image.url}
+        alt={image.nombre}
+        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
       />
-      <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/60 via-transparent to-transparent hover:opacity-100" />
+
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300"></div>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="text-center space-y-2">
+          <p className="text-white font-medium">{image.nombre}</p>
+        </div>
+      </div>
     </motion.div>
   );
 };
