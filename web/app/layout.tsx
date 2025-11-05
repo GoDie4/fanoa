@@ -110,7 +110,7 @@ export const metadata: Metadata = {
 //   }
 // }
 async function getConfig() {
-  const url = process.env.NEXT_PUBLIC_API_URL_PROD;
+  const url = process.env.NEXT_PUBLIC_API_URL;
 
   try {
     // Fetch directo a tu backend
