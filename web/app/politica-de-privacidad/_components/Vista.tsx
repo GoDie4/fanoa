@@ -30,10 +30,6 @@ const PrivacyPolicyPage: React.FC = () => {
     }
   }, [politicas]);
 
-  useEffect(() => {
-    console.log(politicas.slice(0, 11));
-  }, []);
-
   return (
     <div className="min-h-screen bg-white">
       <section className="py-16 lg:py-48">

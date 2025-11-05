@@ -4,7 +4,7 @@
 "use client";
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import { Facebook, Instagram, Mail, MapPin, Phone, Loader2 } from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { redirigirWhatsApp } from "@/utils/redirectToWhatsapp";
 
