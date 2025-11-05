@@ -7,13 +7,13 @@ import Link from "next/link";
 import { useConfig } from "../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
-interface Stand {
-  titulo: string;
-  descripcion: string;
-  imagen: string;
-  textoBoton: string;
-  enlace: string;
-}
+// interface Stand {
+//   titulo: string;
+//   descripcion: string;
+//   imagen: string;
+//   textoBoton: string;
+//   enlace: string;
+// }
 
 // const standsData: Stand[] = [
 //   {
