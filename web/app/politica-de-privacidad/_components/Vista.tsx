@@ -8,6 +8,8 @@ const PrivacyPolicyPage: React.FC = () => {
   const [lastUpdated, setLastUpdated] = useState<string>("");
 
   const config = useConfig();
+
+  console.log(config)
   const { politicas } = (config as unknown as ConfigResponse).data;
 
   useEffect(() => {
