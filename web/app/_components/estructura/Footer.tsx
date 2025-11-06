@@ -4,14 +4,7 @@
 "use client";
 import React, { useMemo } from "react";
 import { motion } from "framer-motion";
-import {
-  Facebook,
-  Instagram,
-  Mail,
-  MapPin,
-  Phone,
-  Loader2,
-} from "lucide-react";
+import { Facebook, Instagram, Mail, MapPin, Phone } from "lucide-react";
 import Link from "next/link";
 import { redirigirWhatsApp } from "@/utils/redirectToWhatsapp";
 
@@ -67,12 +60,8 @@ const Footer: React.FC = () => {
     if (!contacto) return null;
 
     return {
-      numeros: contacto.numeros
-        .sort((a: any, b: any) => a.position - b.position)
-        .slice(0, 3),
-      correos: contacto.correos
-        .sort((a: any, b: any) => a.position - b.position)
-        .slice(0, 3),
+      numeros: contacto.numeros.sort((a: any, b: any) => a.position - b.position).slice(0, 3),
+      correos: contacto.correos.sort((a: any, b: any) => a.position - b.position).slice(0, 3),
       direccion: contacto.direccion1,
       whatsapp: contacto.whatsapp,
       socialLinks: [
@@ -118,24 +107,18 @@ const Footer: React.FC = () => {
             {/* Logo and Tagline */}
             <div className="space-y-4">
               <div className="flex items-center gap-3">
-                <img
-                  src="/assets/images/logo/logo_white.png"
-                  alt=""
-                  className="block w-[260px]"
-                />
+                <img src="/assets/images/logo/logo_white.png" alt="" className="block w-[260px]" />
               </div>
               <p className="text-sm leading-relaxed text-gray-200">
-                Transformamos tus ideas en stands únicos que capturan la esencia
-                de tu marca. Diseño, innovación y calidad en cada proyecto.
+                Transformamos tus ideas en stands únicos que capturan la esencia de tu marca.
+                Diseño, innovación y calidad en cada proyecto.
               </p>
             </div>
 
             {/* CTA Box */}
             <div className="p-6 space-y-3 border bg-gradient-to-br from-primary/10 to-primary/5 border-primary rounded-xl">
               <div className="flex items-center gap-2">
-                <h4 className="font-bold text-white">
-                  ¿Listo para tu próximo evento?
-                </h4>
+                <h4 className="font-bold text-white">¿Listo para tu próximo evento?</h4>
               </div>
               <p className="text-sm text-gray-400">
                 Conversemos sobre tu proyecto y hagamos realidad tu stand ideal
@@ -200,7 +183,6 @@ const Footer: React.FC = () => {
                 Contacto
               </h4>
 
-
               {contactData && (
                 <div className="space-y-3">
                   {/* Correos */}
@@ -237,9 +219,7 @@ const Footer: React.FC = () => {
                           <Phone />
                         </span>
                         <div>
-                          <p className="text-xs text-gray-200 uppercase">
-                            Teléfono
-                          </p>
+                          <p className="text-xs text-gray-200 uppercase">Teléfono</p>
                           <p className="text-sm text-gray-300 transition-colors group-hover:text-primary">
                             {item.numero}
                           </p>
@@ -254,12 +234,8 @@ const Footer: React.FC = () => {
                         <MapPin />
                       </span>
                       <div>
-                        <p className="text-xs text-gray-200 uppercase">
-                          Ubicación
-                        </p>
-                        <p className="text-sm text-gray-300">
-                          {contactData.direccion}
-                        </p>
+                        <p className="text-xs text-gray-200 uppercase">Ubicación</p>
+                        <p className="text-sm text-gray-300">{contactData.direccion}</p>
                       </div>
                     </div>
                   )}
@@ -269,11 +245,8 @@ const Footer: React.FC = () => {
 
             {/* Social Media */}
             <div>
-              <p className="mb-3 text-sm font-semibold text-white">
-                Síguenos en redes
-              </p>
-              {contactData?.socialLinks &&
-              contactData.socialLinks.length > 0 ? (
+              <p className="mb-3 text-sm font-semibold text-white">Síguenos en redes</p>
+              {contactData?.socialLinks && contactData.socialLinks.length > 0 ? (
                 <div className="flex flex-wrap gap-3">
                   {contactData.socialLinks.map((social, index) => (
                     <motion.a
@@ -293,9 +266,7 @@ const Footer: React.FC = () => {
                   ))}
                 </div>
               ) : (
-                <p className="text-sm text-gray-400">
-                  No hay redes sociales disponibles
-                </p>
+                <p className="text-sm text-gray-400">No hay redes sociales disponibles</p>
               )}
             </div>
           </motion.div>
@@ -311,28 +282,18 @@ const Footer: React.FC = () => {
             </p>
             <div className="flex items-center w-fit gap-4">
               <p>
-                <Link href={"/politica-de-privacidad"}>
-                  Política de privacidad
-                </Link>
+                <Link href={"/politica-de-privacidad"}>Política de privacidad</Link>
               </p>
               <p>
-                <Link href={"/politica-de-privacidad"}>Aviso Legal</Link>
+                <Link href={"/aviso-legal"}>Aviso Legal</Link>
               </p>
             </div>
 
             <div className="flex gap-6 text-gray-200">
               <p className="flex items-center gap-1">
                 Design by:{" "}
-                <a
-                  href="https://logosperu.com.pe/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img
-                    src="/assets/images/logo/lp.svg"
-                    alt=""
-                    className="block w-[18px]"
-                  />
+                <a href="https://logosperu.com.pe/" target="_blank" rel="noopener noreferrer">
+                  <img src="/assets/images/logo/lp.svg" alt="" className="block w-[18px]" />
                 </a>
               </p>
             </div>

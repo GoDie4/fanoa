@@ -41,6 +41,7 @@ export interface Proyecto {
   categoriaId: string;
   createdAt: string;
   updatedAt: string;
+  categoria: any;
 }
 
 // 🗂️ Categorías de servicios

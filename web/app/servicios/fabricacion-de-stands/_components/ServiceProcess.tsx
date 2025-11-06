@@ -1,6 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useEffect } from "react";
 import { useConfig } from "../../../_context/ConfigContext";
 import { ConfigResponse } from "@/models/generalData";
 
@@ -76,7 +76,10 @@ export const ServiceProcess = () => {
                     <h3 className="text-2xl sm:text-3xl font-bold text-primary">
                       {trabajo.titulo}
                     </h3>
-                    <p className="text-lg text-gray-800 leading-relaxed">{trabajo.descripcion}</p>
+                    <div
+                      className="text-lg text-gray-800 leading-relaxed"
+                      dangerouslySetInnerHTML={{ __html: trabajo.descripcion }}
+                    />
                   </div>
                 </div>
               </div>

@@ -17,7 +17,7 @@ const PoliticaSchema = Yup.object().shape({
 });
 
 export const EditablesPoliticas = (): JSX.Element => {
-  const [politicas, setPoliticas] = useState<any[]>([]);
+  const [, setPoliticas] = useState<any[]>([]);
   const quillRefs = useRef<(ReactQuill & { editor?: any })[]>([]);
 
   const autoResize = (index: number) => {
@@ -28,7 +28,7 @@ export const EditablesPoliticas = (): JSX.Element => {
     }
   };
 
-  const formiks = Array.from({ length: 11 }).map((_, i) =>
+  const formiks = Array.from({ length: 12 }).map((_, i) =>
     useFormik({
       initialValues: {
         id: "",
@@ -38,6 +38,7 @@ export const EditablesPoliticas = (): JSX.Element => {
       validationSchema: PoliticaSchema,
       onSubmit: async (values) => {
         try {
+          const tituloPolitica = i + 1 === 12 ? "Aviso Legal" : `Política ${i + 1}`;
           if (values.id) {
             await updatePoliticaAction(values.id, {
               titulo: values.titulo,
@@ -45,7 +46,7 @@ export const EditablesPoliticas = (): JSX.Element => {
             });
             Swal.fire({
               icon: "success",
-              title: `Política ${i + 1} actualizada`,
+              title: `${tituloPolitica} actualizada`,
               confirmButtonColor: "#22c55e",
             });
           } else {
@@ -56,7 +57,7 @@ export const EditablesPoliticas = (): JSX.Element => {
             formiks[i].setFieldValue("id", nueva.id);
             Swal.fire({
               icon: "success",
-              title: `Política ${i + 1} creada`,
+              title: `${tituloPolitica} creada`,
               confirmButtonColor: "#22c55e",
             });
           }
@@ -100,7 +101,7 @@ export const EditablesPoliticas = (): JSX.Element => {
           className="p-8 bg-secondary-100 rounded-xl"
           onSubmit={formik.handleSubmit}
         >
-          <TitleBriefs titulo={`Política ${index + 1}`} />
+          <TitleBriefs titulo={index + 1 === 12 ? "Aviso Legal" : `Política ${index + 1}`} />
 
           <div className="flex flex-col gap-4 mt-10 mb-5">
             <label className="font-medium text-white">Título</label>
@@ -140,7 +141,7 @@ export const EditablesPoliticas = (): JSX.Element => {
               type="submit"
               className="px-4 py-2 text-black bg-green-500 rounded-lg hover:bg-green-600"
             >
-              Guardar Política {index + 1}
+              {index + 1 === 12 ? "Guardar" : `Guardar Politica ${index + 1}`}
             </button>
           </div>
         </form>

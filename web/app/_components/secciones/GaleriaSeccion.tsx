@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 "use client";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { GridGaleria } from "./galeria/GridGaleria";
 
@@ -9,7 +9,7 @@ export interface GalleryImage {
   url: string;
   span: string;
   animationType: "wave" | "reveal" | "fragment" | "elastic";
-  nombre?: string
+  nombre?: string;
 }
 
 // const images: GalleryImage[] = [
@@ -37,7 +37,7 @@ export interface GalleryImage {
 //     span: "col-span-1 row-span-3 md:col-span-1 md:row-span-3",
 //     animationType: "elastic",
 //   },
- 
+
 //   {
 //     id: 7,
 //     url: "/assets/images/galeria/galeria7.webp",
@@ -67,8 +67,10 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
+  useEffect(() => {
+    console.log({ image });
+  }, []);
 
-  
   const getAnimationVariants = () => {
     switch (image.animationType) {
       case "wave":
@@ -149,39 +151,58 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   return (
     <motion.div
       ref={ref}
-      className={`${image.span} relative overflow-hidden rounded-lg bg-gradient-to-br from-gray-800 to-gray-900 shadow-2xl hover:shadow-purple-500/50 transition-shadow duration-300`}
+      className={`${image.span} group relative overflow-hidden rounded-2xl cursor-pointer shadow-2xl transition-shadow duration-300 hover:shadow-purple-500/50`}
       //@ts-ignore
       variants={getAnimationVariants()}
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
     >
       <motion.img
-        src={`${image.url}`}
-        alt={`Gallery image ${image.id}`}
-        className="object-cover w-full h-full"
+        src={image.url}
+        alt={image.nombre}
+        className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-110"
         whileHover={{ scale: 1.05 }}
         transition={{ duration: 0.4 }}
       />
-      <div className="absolute inset-0 transition-opacity duration-300 opacity-0 bg-gradient-to-t from-black/60 via-transparent to-transparent hover:opacity-100" />
+
+      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/60 transition-all duration-300"></div>
+      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="text-center space-y-2">
+          <p className="text-white font-medium">{image.nombre}</p>
+        </div>
+      </div>
     </motion.div>
   );
 };
 
-const Gallery: React.FC = () => {
+interface GalleryProps {
+  filtro?: string;
+}
+
+const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
+  const titulo =
+    filtro === "stands"
+      ? "Fabricación de Stands"
+      : filtro === "carpinteria"
+      ? "Carpintería y Ebanistería"
+      : "Galería";
+
   return (
     <div className="min-h-screen py-20 bg-white ">
       <div className="container  px-4 md:px-14 mx-auto mb-20">
         <div className="grid items-end grid-cols-1 gap-8 lg:grid-cols-12">
           <div className="space-y-4 lg:col-span-6">
             <div className="overflow-hidden"></div>
-            <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-primary font-sans uppercase  leading-[0.9] tracking-tight">
-              Galería
+            {/* <h2 className="text-6xl sm:text-7xl lg:text-8xl font-black text-primary font-sans uppercase  leading-[0.9] tracking-tight"> */}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary font-sans uppercase leading-tight tracking-tight">
+              {titulo}
             </h2>
             <div className="flex items-center gap-4 pt-2">
               <div className="h-[2px] w-16 bg-secondary"></div>
-              <span className="font-mono text-sm text-gray-700">
-                Nuestros trabajos
-              </span>
+              {/* <span className="font-mono text-sm text-gray-700">
+                {filtro ? `Filtrado por: ${filtro}` : "Nuestros trabajos"}
+              </span> */}
+              <span className="font-mono text-sm text-gray-700">Nuestros trabajos</span>
             </div>
           </div>
 
@@ -192,20 +213,16 @@ const Gallery: React.FC = () => {
               </p>
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full cursor-pointer border-primary hover:bg-primary hover:text-white group">
-                  <span className="text-lg duration-300 animate-bounce">
-                    ↓
-                  </span>
+                  <span className="text-lg duration-300 animate-bounce">↓</span>
                 </div>
-                <span className="text-sm text-gray-800">
-                  Descubre nuestros proyectos
-                </span>
+                <span className="text-sm text-gray-800">Descubre nuestros proyectos</span>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div className="container mx-auto overflow-hidden">
-        <GridGaleria/>
+        <GridGaleria filtro={filtro} />
       </div>
     </div>
   );

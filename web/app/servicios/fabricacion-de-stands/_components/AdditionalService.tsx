@@ -1,9 +1,8 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { ConfigResponse, GeneralData } from "@/models/generalData";
+import { ConfigResponse } from "@/models/generalData";
 import { useConfig } from "../../../_context/ConfigContext";
-import Image from "next/image";
-import { useEffect } from "react";
 
 export const AdditionalService = () => {
   const config = useConfig();
@@ -52,7 +51,8 @@ export const AdditionalService = () => {
               className="group relative overflow-hidden rounded-2xl bg-white border-2 border-gray-100 hover:border-primary transition-all duration-500 cursor-pointer hover:shadow-2xl"
             >
               {/* Imagen de fondo */}
-              <div className="aspect-[4/5] overflow-hidden">
+              {/* <div className="aspect-[4/5] overflow-hidden"> */}
+              <div className="aspect-square overflow-hidden">
                 <img
                   src={servicio.imagen}
                   alt={servicio.titulo}
@@ -71,12 +71,12 @@ export const AdditionalService = () => {
                   <h3 className="text-xl font-bold text-white leading-tight group-hover:translate-y-[-4px] transition-transform duration-500">
                     {servicio.titulo}
                   </h3>
-                  {/* <h2
+                  <h2
                     className="text-base text-white leading-tight opacity-0 translate-y-2 
                     transition-all duration-500 ease-out 
                     group-hover:opacity-100 group-hover:translate-y-0"
-                  > */}
-                  <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out">
+                  >
+                    {/* <h2 className="text-base text-white leading-tight transition-all duration-500 ease-out"> */}
                     {servicio.subtitulo}
                   </h2>
                 </div>

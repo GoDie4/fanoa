@@ -61,9 +61,7 @@ export const metadata: Metadata = {
     title: "Grupo Fanoa | Diseño y Montaje de Stands en Madrid",
     description:
       "Fabricamos stands feriales en Madrid con diseño personalizado y carpintería de precisión. Soluciones llave en mano para ferias y eventos.",
-    images: [
-      "https://www.grupofanoa.com/assets/images/slides/slide1.webp",
-    ],
+    images: ["https://www.grupofanoa.com/assets/images/slides/slide1.webp"],
     creator: "@grupofanoa",
   },
 
@@ -112,10 +110,12 @@ export const metadata: Metadata = {
 //   }
 // }
 async function getConfig() {
+  const url = process.env.NEXT_PUBLIC_API_URL;
+
   try {
     // Fetch directo a tu backend
-    const res = await fetch("https://api2.grupofanoa.com/api/v1/general", {
-      next: { revalidate: 100 },
+    const res = await fetch(`${url}/general`, {
+      next: { revalidate: 50 },
     });
     console.log({ res });
 
@@ -138,9 +138,7 @@ export default async function RootLayout({
   const configData = await getConfig();
   return (
     <html lang="es">
-      <body
-        className={`${encodeSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${encodeSans.variable} ${geistMono.variable} antialiased`}>
         <head>
           <Script
             async
