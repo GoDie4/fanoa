@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /politicas-de-privacidad
+Disallow: /aviso-legal
+Allow: /
+
+Sitemap: https://grupofanoa.com/sitemap.xml
