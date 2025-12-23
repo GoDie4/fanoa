@@ -16,10 +16,6 @@ export const AdditionalService = () => {
     })),
   };
 
-  // useEffect(() => {
-  //   console.log(categorias[0]);
-  // }, []);
-
   if (!serviceData) return null;
 
   return (
@@ -27,7 +23,9 @@ export const AdditionalService = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-[0.3em] text-gray-500">Qué Incluye</span>
+          <span className="text-sm uppercase tracking-[0.3em] text-gray-500">
+            Qué Incluye
+          </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary font-sans uppercase mt-4 leading-tight">
             {serviceData.miniTitulo}
           </h2>
@@ -42,7 +40,9 @@ export const AdditionalService = () => {
         {/* Grid de Servicios Adicionales */}
         <div
           className={`grid grid-cols-1 sm:grid-cols-2 gap-6 ${
-            serviceData.serviciosAdicionales.length < 4 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+            serviceData.serviciosAdicionales.length < 4
+              ? "lg:grid-cols-3"
+              : "lg:grid-cols-4"
           }`}
         >
           {serviceData.serviciosAdicionales.map((servicio, index) => (

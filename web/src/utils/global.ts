@@ -1,5 +1,5 @@
-const url = process.env.NEXT_PUBLIC_API_URL_PROD;
-const urlImages = process.env.NEXT_PUBLIC_API_URL_PROD_DEFAULT;
+const url = process.env.NEXT_PUBLIC_API_URL;
+const urlImages = process.env.NEXT_PUBLIC_API_URL_DEFAULT;
 
 export const Global = {
   url,

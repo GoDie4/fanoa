@@ -37,7 +37,9 @@ import { ConfigResponse } from "@/models/generalData";
 
 const highlightWords = (text: string, words: string[]): React.ReactNode[] => {
   // Escapamos las palabras para regex
-  const escapedWords = words.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"));
+  const escapedWords = words.map((w) =>
+    w.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")
+  );
   // Creamos regex con global y case insensitive
   const regex = new RegExp(`(${escapedWords.join("|")})`, "gi");
 
@@ -55,20 +57,14 @@ const highlightWords = (text: string, words: string[]): React.ReactNode[] => {
 
 const ServicesSection: React.FC = () => {
   const config = useConfig();
-  const { categorias, servicioEditables } = (config as unknown as ConfigResponse).data;
-
-  // useEffect(() => {
-  //   console.log(servicioEditables[0].componente1.split(" ")[1]);
-  // }, []);
+  const { categorias, servicioEditables } = (
+    config as unknown as ConfigResponse
+  ).data;
 
   const servicesData = categorias.map((categoria) => ({
     ...categoria,
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/servicio_categoria/${categoria.imagen}`,
   }));
-
-  // useEffect(() => {
-  //   console.log(!servicioEditables[0].componente4);
-  // }, []);
 
   const generateSlug = (text: string): string => {
     return text
@@ -111,7 +107,9 @@ const ServicesSection: React.FC = () => {
             </h2>
             <div className="flex items-center gap-4 pt-2">
               <div className="h-[2px] w-16 bg-secondary"></div>
-              <span className="text-morado text-sm font-mono">¿Qué hacemos?</span>
+              <span className="text-morado text-sm font-mono">
+                ¿Qué hacemos?
+              </span>
             </div>
           </div>
 
@@ -121,13 +119,20 @@ const ServicesSection: React.FC = () => {
               <p className="text-gray-800 text-base lg:text-lg leading-relaxed text-justify">
                 {/* Experiencias visuales que transforman marcas en referentes de la industria. Tenemos
                 presencia <strong>nacional</strong> o <strong>internacional</strong>. */}
-                {highlightWords(servicioEditables[0]?.descripcion, ["nacional", "internacional"])}
+                {highlightWords(servicioEditables[0]?.descripcion, [
+                  "nacional",
+                  "internacional",
+                ])}
               </p>
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full border border-primary flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 cursor-pointer group">
-                  <span className="text-lg  duration-300 animate-bounce">↓</span>
+                  <span className="text-lg  duration-300 animate-bounce">
+                    ↓
+                  </span>
                 </div>
-                <span className="text-sm text-gray-800">Explora nuestro portafolio</span>
+                <span className="text-sm text-gray-800">
+                  Explora nuestro portafolio
+                </span>
               </div>
             </div>
           </div>
@@ -135,7 +140,9 @@ const ServicesSection: React.FC = () => {
 
         {/* Barra inferior con stats */}
         <div className="mt-12 pt-8 border-t border-primary/50">
-          <div className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-6 text-center`}>
+          <div
+            className={`grid grid-cols-1 md:grid-cols-2 ${gridCols} gap-6 text-center`}
+          >
             {componentes.map((comp, i) => {
               const words = comp.trim().split(" ");
               const lastWord = words.pop();
@@ -145,7 +152,9 @@ const ServicesSection: React.FC = () => {
                 <div key={i} className="space-y-1">
                   <div className="text-2xl font-bold text-gray-900">{top}</div>
                   {lastWord && (
-                    <div className="text-xs uppercase tracking-wider text-gray-800">{lastWord}</div>
+                    <div className="text-xs uppercase tracking-wider text-gray-800">
+                      {lastWord}
+                    </div>
                   )}
                 </div>
               );

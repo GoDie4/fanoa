@@ -36,7 +36,6 @@ export const Banner: React.FC<BannerProps> = ({
     backgroundImage = `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-secundarios/${bannersSecundarios[3]?.imagen}`;
   }
 
-  console.log({ backgroundImage });
 
   const heightClasses = {
     small: "h-48",

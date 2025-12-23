@@ -7,7 +7,11 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 // import "yet-another-react-lightbox/plugins/zoom.css";
 
-export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" }) => {
+export const DetailsServicioGallery = ({
+  alias,
+}: {
+  alias: "first" | "second";
+}) => {
   const config = useConfig();
   const { categorias } = (config as unknown as ConfigResponse).data || {};
   const [, setScrollY] = useState(0);
@@ -33,10 +37,6 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
     };
   }
 
-  // useEffect(() => {
-  //   console.log({ serviceData });
-  // }, []);
-
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
     window.addEventListener("scroll", handleScroll);
@@ -47,7 +47,9 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
     <section className="py-20 px-4 bg-white">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-[0.3em] text-gray-500 ">Portafolio</span>
+          <span className="text-sm uppercase tracking-[0.3em] text-gray-500 ">
+            Portafolio
+          </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary font-sans mt-4">
             Proyectos Destacados
           </h2>
@@ -82,7 +84,9 @@ export const DetailsServicioGallery = ({ alias }: { alias: "first" | "second" })
           <Lightbox
             open={selectedIndex !== null}
             close={() => setSelectedIndex(null)}
-            slides={serviceData?.proyectos.map((p) => ({ src: p.imagen })) || []}
+            slides={
+              serviceData?.proyectos.map((p) => ({ src: p.imagen })) || []
+            }
             index={selectedIndex ?? 0}
             plugins={[Zoom]}
             animation={{ zoom: 500 }}

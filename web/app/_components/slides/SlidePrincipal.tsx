@@ -55,10 +55,6 @@ export default function StandShowcaseSlider() {
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/banners-principales/${banner.imagen}`,
   }));
 
-  // useEffect(() => {
-  //   console.log({ standsData });
-  // }, []);
-
   const autoplayDuration = 6000;
 
   useEffect(() => {

@@ -9,15 +9,12 @@ const PrivacyPolicyPage: React.FC = () => {
 
   const config = useConfig();
 
-  console.log(config)
   const { politicas } = (config as unknown as ConfigResponse).data;
 
   useEffect(() => {
     if (politicas.length > 0) {
       setActiveSection(politicas[0].id);
 
-      console.log({ politicas });
-      // Obtener la última fecha de actualización
       const latestDate = politicas
         .map((p) => new Date(p.updatedAt))
         .sort((a, b) => b.getTime() - a.getTime())[0];
@@ -77,7 +74,10 @@ const PrivacyPolicyPage: React.FC = () => {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-white/50">📍</span>
-                      <span>C/Hierro nº 25 – POL. IND. BORONDO 28510, Campo Real, Madrid.</span>
+                      <span>
+                        C/Hierro nº 25 – POL. IND. BORONDO 28510, Campo Real,
+                        Madrid.
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -89,7 +89,8 @@ const PrivacyPolicyPage: React.FC = () => {
               {/* Última actualización */}
               {lastUpdated && (
                 <p className="mb-6 text-gray-500 text-sm">
-                  Última actualización: <span className="font-medium">{lastUpdated}</span>
+                  Última actualización:{" "}
+                  <span className="font-medium">{lastUpdated}</span>
                 </p>
               )}
 
