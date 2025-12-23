@@ -87,28 +87,6 @@ export const metadata: Metadata = {
   },
 };
 
-// async function getConfig() {
-//   try {
-//     console.log(process.env.NEXT_PUBLIC_API_URL)
-//     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bprincipales`, {
-//       next: {
-//         revalidate: 3600,
-//       },
-//     });
-
-//     const data = await res.json()
-
-//     console.log('Datos parseados:', data)
-
-//     if (!res.ok) {
-//       throw new Error("Error al obtener configuración");
-//     }
-
-//     return data
-//   } catch (error) {
-//     console.error("Error fetching config:", error);
-//   }
-// }
 async function getConfig() {
   const url = process.env.NEXT_PUBLIC_API_URL;
 
@@ -117,12 +95,10 @@ async function getConfig() {
     const res = await fetch(`${url}/general`, {
       next: { revalidate: 50 },
     });
-    console.log({ res });
 
     if (!res.ok) throw new Error("Error al obtener configuración");
 
     const data = await res.json();
-    console.log({ data });
     return data;
   } catch (error) {
     console.error("Error fetching config:", error);
@@ -138,7 +114,9 @@ export default async function RootLayout({
   const configData = await getConfig();
   return (
     <html lang="es">
-      <body className={`${encodeSans.variable} ${geistMono.variable} antialiased`}>
+      <body
+        className={`${encodeSans.variable} ${geistMono.variable} antialiased`}
+      >
         <head>
           <Script
             async

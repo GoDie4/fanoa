@@ -72,10 +72,6 @@ const FeriasCarousel: React.FC = () => {
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/feria/${feria.imagen}`,
   }));
 
-  // useEffect(() => {
-  //   console.log(feriasLogos);
-  // }, []);
-
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isAutoPlaying] = useState(true);
   const itemsPerView = 4; // Cuántos logos mostrar a la vez en desktop

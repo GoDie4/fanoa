@@ -27,8 +27,6 @@ export const Header = () => {
   //@ts-ignore
   const contacto = configuracion?.[0];
 
-    console.log(contacto)
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 45);
@@ -102,8 +100,8 @@ export const Header = () => {
                 >
                   <Mail className="w-4 h-4 transition-transform group-hover:scale-110" />
                   <span className="hidden font-medium sm:inline">
-                    {contacto?.correos?.find((c: any) => c.position === 1)?.correo ??
-                      ""}
+                    {contacto?.correos?.find((c: any) => c.position === 1)
+                      ?.correo ?? ""}
                   </span>
                   <span className="font-medium sm:hidden">Email</span>
                 </a>

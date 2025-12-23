@@ -13,32 +13,6 @@ export const ServiceProcess = () => {
     ...trabajo,
     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${trabajo.imagen}`,
   }));
-  // console.log(serviceData);
-  // }, []);
-
-  // useEffect(() => {
-  //   const serviceData = categorias[0].trabajos.map((trabajo) => ({
-  //     ...trabajo,
-  //     imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${trabajo.imagen}`,
-  //   }));
-
-  //   console.log({ serviceData });
-  // }, []);
-
-  // const serviceData = categorias[0].trabajos && {
-  //   ...categorias[0],
-  //   imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${categorias[0].trabajos}`,
-  // };
-
-  // const serviceData = categorias[0].trabajos.map((trabajo) => ({
-  //   ...trabajo,
-  //   imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${trabajo.imagen}`,
-  // }));
-
-  //  && {
-  //   ...categorias[0],
-  //   imagen: `${process.env.NEXT_PUBLIC_API_URL_DEFAULT}/uploads/trabajo/${categorias[0].trabajos}`,
-  // };
 
   if (!serviceData) return null;
 
@@ -47,7 +21,9 @@ export const ServiceProcess = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-16">
-          <span className="text-sm uppercase tracking-[0.3em] text-gray-500">Nuestro Proceso</span>
+          <span className="text-sm uppercase tracking-[0.3em] text-gray-500">
+            Nuestro Proceso
+          </span>
           <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-primary font-sans mt-4">
             Cómo Trabajamos
           </h2>
@@ -61,7 +37,11 @@ export const ServiceProcess = () => {
                   index % 2 === 1 ? "lg:grid-flow-dense" : ""
                 }`}
               >
-                <div className={`lg:col-span-4 ${index % 2 === 1 ? "lg:col-start-9" : ""}`}>
+                <div
+                  className={`lg:col-span-4 ${
+                    index % 2 === 1 ? "lg:col-start-9" : ""
+                  }`}
+                >
                   <div className="aspect-square bg-gray-100 rounded-lg overflow-hidden">
                     <img
                       src={trabajo.imagen}
@@ -71,7 +51,11 @@ export const ServiceProcess = () => {
                   </div>
                 </div>
 
-                <div className={`lg:col-span-8 ${index % 2 === 1 ? "lg:col-start-1" : ""}`}>
+                <div
+                  className={`lg:col-span-8 ${
+                    index % 2 === 1 ? "lg:col-start-1" : ""
+                  }`}
+                >
                   <div className="space-y-4">
                     <h3 className="text-2xl sm:text-3xl font-bold text-primary">
                       {trabajo.titulo}

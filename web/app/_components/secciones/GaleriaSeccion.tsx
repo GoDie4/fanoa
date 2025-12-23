@@ -67,10 +67,6 @@ export const GalleryItem: React.FC<GalleryItemProps> = ({ image, index }) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
-  useEffect(() => {
-    console.log({ image });
-  }, []);
-
   const getAnimationVariants = () => {
     switch (image.animationType) {
       case "wave":
@@ -202,7 +198,9 @@ const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
               {/* <span className="font-mono text-sm text-gray-700">
                 {filtro ? `Filtrado por: ${filtro}` : "Nuestros trabajos"}
               </span> */}
-              <span className="font-mono text-sm text-gray-700">Nuestros trabajos</span>
+              <span className="font-mono text-sm text-gray-700">
+                Nuestros trabajos
+              </span>
             </div>
           </div>
 
@@ -215,7 +213,9 @@ const Gallery: React.FC<GalleryProps> = ({ filtro }) => {
                 <div className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full cursor-pointer border-primary hover:bg-primary hover:text-white group">
                   <span className="text-lg duration-300 animate-bounce">↓</span>
                 </div>
-                <span className="text-sm text-gray-800">Descubre nuestros proyectos</span>
+                <span className="text-sm text-gray-800">
+                  Descubre nuestros proyectos
+                </span>
               </div>
             </div>
           </div>
